@@ -1,4 +1,5 @@
 <?php
+
 require_once ("Connection.php");
 class NewsGateway
 {
@@ -36,7 +37,10 @@ class NewsGateway
     public function findAllNews() : array{
         $query='SELECT * FROM news';
         $this->con->executeQuery($query);
-        return $this->con->getResults();
+        $results=$this->con->getResults();
+        foreach ($results as $row)
+            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date']);
+        return $tabNews;
     }
 
 }
