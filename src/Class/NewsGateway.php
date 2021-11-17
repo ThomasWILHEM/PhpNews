@@ -33,9 +33,10 @@ class NewsGateway
         ));
     }
 
-    public function findAllNews(){
+    public function findAllNews() : array{
         $query='SELECT * FROM news';
         $this->con->executeQuery($query);
+        return $this->con->getResults();
     }
 
 }
