@@ -1,6 +1,9 @@
 .news-list{
-    margin-top: 5px;
     padding: 0;
+    margin: 5px 10px 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .news-item {
@@ -9,14 +12,13 @@
     flex-wrap: nowrap;
     overflow: hidden;
     height: 60px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px;
     border-bottom: 1px solid black;
     align-items: center;
 }
 
-.news-item:first-child
-{
-    border-top: 1px solid black;
+.news-item:last-child{
+    border-bottom: 0px;
 }
 
 .news-date {
@@ -35,7 +37,7 @@
     overflow: inherit;
     text-overflow: ellipsis;
     flex-shrink: 1;
-    margin: 0px 20px 0px 10px;
+    margin-left: 10px;
 }
 
 .news-img {

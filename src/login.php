@@ -19,8 +19,8 @@
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="login.html">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="login.php">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,12 +34,12 @@
                     <form>
                         <div class="mb-3"><label class="form-label" for="username">Nom d'utilisateur</label><input
                                 class="form-control item" type="text" id="username" name="username"></div>
-                        <div class="mb-3"><label class="form-label" for="password">Password</label><input
+                        <div class="mb-3"><label class="form-label" for="password">Mot de passe</label><input
                                 class="form-control" type="password" id="password" name="password"></div>
                         <div class="mb-3">
                             <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label
-                                    class="form-check-label" for="checkbox">Remember me</label></div>
-                        </div><button class="btn btn-primary" type="submit">Log In</button>
+                                    class="form-check-label" for="checkbox">Se souvenir de moi?</label></div>
+                        </div><button class="btn btn-primary" type="submit">Se connecter</button>
                     </form>
                 </div>
             </section>
