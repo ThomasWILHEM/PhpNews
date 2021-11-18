@@ -27,10 +27,27 @@ class NewsGateway
         ));
     }
 
-    public function update(string $lien,array $parameters){
-        $query='UPDATE news SET  WHERE lien=:lien';
+    public function updateTitre(string $lien,string $newTitre){
+        $query='UPDATE news SET titre=:newTitre WHERE lien=:lien';
         $this->con->executeQuery($query,array(
-            ':lien'=> $parameters
+            ':lien'=> array($lien,PDO::PARAM_STR),
+            ':newTitre' => array($newTitre,PDO::PARAM_STR)
+        ));
+    }
+
+    public function updateDescription(string $lien,string $newDescription){
+        $query='UPDATE news SET description=:newDescription WHERE lien=:lien';
+        $this->con->executeQuery($query,array(
+            ':lien'=> array($lien,PDO::PARAM_STR),
+            ':newDescription' => array($newDescription,PDO::PARAM_STR)
+        ));
+    }
+
+    public function updateDate(string $lien,string $newDate){
+        $query='UPDATE news SET date=:newDate WHERE lien=:lien';
+        $this->con->executeQuery($query,array(
+            ':lien'=> array($lien,PDO::PARAM_STR),
+            ':newDate' => array($newDate,PDO::PARAM_STR)
         ));
     }
 
