@@ -2,6 +2,7 @@
 
 class Validation
 {
+
     static function isValidSite(string &$nom,string &$lienSite, string &$logo, string &$fluxRSS, array &$vueErreur):bool{
 
         if(!isset($nom)||empty($nom)){
@@ -49,5 +50,27 @@ class Validation
         $fluxRSS=filter_var($fluxRSS,FILTER_SANITIZE_URL);          //
         return true;
 
+    }
+
+    public static function isValidLogin(string &$login, string &$mdp):bool
+    {
+        if (!isset($login) || empty($login)) {
+            $vueErreur[] = "Le login est manquant";
+            return false;
+        }
+
+        if (!isset($mdp) || empty($mdp)) {
+            $vueErreur[] = "Le mot de passe est manquant";
+            return false;
+        }
+
+        if ($login != filter_var($login, FILTER_SANITIZE_STRING) || $mdp != filter_var($mdp, FILTER_SANITIZE_STRING)) {
+            $vueErreur[] = "tentative d'injection de code";
+            return false;
+        }
+
+        $login = filter_var($login, FILTER_SANITIZE_STRING);
+        $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
+        return true;
     }
 }

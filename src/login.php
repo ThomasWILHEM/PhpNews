@@ -14,7 +14,7 @@
 
     <body>
         <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-            <div class="container"><a class="navbar-brand logo" href="">PhpNews</a><button data-bs-toggle="collapse"
+            <div class="container"><a class="navbar-brand logo" href="index.php">PhpNews</a><button data-bs-toggle="collapse"
                     class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
@@ -31,11 +31,11 @@
                     <div class="block-heading">
                         <h2 class="text-info">Connexion</h2>
                     </div>
-                    <form>
-                        <div class="mb-3"><label class="form-label" for="username">Nom d'utilisateur</label><input
-                                class="form-control item" type="text" id="username" name="username"></div>
-                        <div class="mb-3"><label class="form-label" for="password">Mot de passe</label><input
-                                class="form-control" type="password" id="password" name="password"></div>
+                    <form method="post" action="verifLogin.php">
+                        <div class="mb-3"><label class="form-label" for="username">Nom d'utilisateur</label>
+                            <input class="form-control item" type="text" id="username" name="username"></div>
+                        <div class="mb-3"><label class="form-label" for="password">Mot de passe</label>
+                            <input class="form-control" type="password" id="password" name="password"></div>
                         <div class="mb-3">
                             <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label
                                     class="form-check-label" for="checkbox">Se souvenir de moi?</label></div>
