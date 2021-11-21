@@ -24,32 +24,38 @@
                 </div>
             </div>
         </nav>
-        <main class="page landing-page" style="height: 90%">
+        <main class="page landing-page" style="height: 80%">
             <!-- Contenu de la page admin -->
-            <h3>Page admin</h3>
-            <div>
-                <label for="newsnumber">Nombre de news à afficher:</label>
+            <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h3>
+            <h4 style="margin-left: 1% ; text-decoration : underline" >Nombre de news</h4>
+            <div style="margin: 20px 5%">Page admin</h3>
+                <label for="newsnu mber">Nombre de news à afficher :</label>
                 <input id="newsnumber" type="number" min="5" max="50" value="20">
             </div>
-            <div style="height: 80%">
-                <h4>Sites référencés</h4>
-                <form action="" method="post">
-                    <label for="nomsite">Nom du site</label>
-                    <input type="text" name="nomsite" id="nomsite">
-                    <label for="lien">Lien du site</label>
-                    <input type="url" name="lien" id="lien">
-                    <label for="logo">Logo du site</label>
-                    <input type="url" name="logo" id="logo">
-                    <label for="fluxrss">Flux RSS du site</label>
-                    <input type="url" name="fluxrss" id="fluxrss">
-                    <input type="submit" name="ajouterSite" value="Ajouter le site">
+
+            <h4 style="margin-left: 1% ; text-decoration : underline">Sites référencés</h4>
+            <div style="height: 80%  ; margin: 20px 5%">
+                <h5> Ajouter un site </h5>
+                <form action="" method="post" style="margin: 20px">
+                    <label for="nomsite">Nom du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="text" name="nomsite" id="nomsite">
+                    <label for="lien">Lien du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="url" name="lien" id="lien">
+                    <label for="logo">Logo du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="url" name="logo" id="logo">
+                    <label for="fluxrss">Flux RSS du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="url" name="fluxrss" id="fluxrss">
+                    <input style="margin-left: 30px" type="submit" name="ajouterSite" value="Ajouter le site">
                 </form>
-                <form action="" method="post">
-                    <label for="searchfordelete">Site à supprimer</label>
-                    <input type="text" name="searchfordelete" id="searchfordelete">
-                    <input type="submit" name="supprimerSite" value="Supprimer le site">
+
+                <h5> Supprimer un site </h5>
+                <form action="" method="post" style="margin: 20px">
+                    <label for="searchfordelete">Site à supprimer : </label>
+                    <input style="margin-left: 10px" type="text" name="searchfordelete" id="searchfordelete">
+                    <input style="margin-left: 30px" type="submit" name="supprimerSite" value="Supprimer le site">
                 </form>
-                <ul style="overflow-y: scroll; height: 90%; background-color: #f7f1e3;border: 1px solid black; border-radius: 10px; margin-right: 100px">
+
+                <ul style="overflow-y: scroll; height: 50%; background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px 0 50px">
                     <li>el1</li>
                     <li>el1</li>
                     <li>el1</li>
@@ -93,7 +99,6 @@
                     <li>el1</li>
                 </ul>
             </div>
-
         </main>
         <footer class="footer">
             <p class="footer-text">Florent MARQUES - G1 - Thomas WILHEM</p>
