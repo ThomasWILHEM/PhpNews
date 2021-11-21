@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
 
-    <body>
+    <body style="overflow-y: hidden">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
             <div class="container"><a class="navbar-brand logo" href="index.php">PhpNews</a><button data-bs-toggle="collapse"
                     class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
@@ -24,8 +24,76 @@
                 </div>
             </div>
         </nav>
-        <main class="page landing-page">
+        <main class="page landing-page" style="height: 90%">
             <!-- Contenu de la page admin -->
+            <h3>Page admin</h3>
+            <div>
+                <label for="newsnumber">Nombre de news à afficher:</label>
+                <input id="newsnumber" type="number" min="5" max="50" value="20">
+            </div>
+            <div style="height: 80%">
+                <h4>Sites référencés</h4>
+                <form action="" method="post">
+                    <label for="nomsite">Nom du site</label>
+                    <input type="text" name="nomsite" id="nomsite">
+                    <label for="lien">Lien du site</label>
+                    <input type="url" name="lien" id="lien">
+                    <label for="logo">Logo du site</label>
+                    <input type="url" name="logo" id="logo">
+                    <label for="fluxrss">Flux RSS du site</label>
+                    <input type="url" name="fluxrss" id="fluxrss">
+                    <input type="submit" name="ajouterSite" value="Ajouter le site">
+                </form>
+                <form action="" method="post">
+                    <label for="searchfordelete">Site à supprimer</label>
+                    <input type="text" name="searchfordelete" id="searchfordelete">
+                    <input type="submit" name="supprimerSite" value="Supprimer le site">
+                </form>
+                <ul style="overflow-y: scroll; height: 90%; background-color: #f7f1e3;border: 1px solid black; border-radius: 10px; margin-right: 100px">
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                    <li>el1</li>
+                </ul>
+            </div>
+
         </main>
         <footer class="footer">
             <p class="footer-text">Florent MARQUES - G1 - Thomas WILHEM</p>

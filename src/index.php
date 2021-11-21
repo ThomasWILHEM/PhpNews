@@ -34,7 +34,7 @@
                     <a class="news-desc news-link" href="https://www.jeuxvideo.com/news/1491498/gta-trilogy-saints-row-a-tout-interet-a-degainer-au-plus-vite.htm">GTA Trilogy : Saints Row a tout intérêt à dégainer au plus vite
                     </a>
                 </li>
-                <li class="news-item white">
+                <li class="news-item gray">
                     <p class="news-date">17/11-21:58:03</p>
                     <a href="" class="news-title news-link">Titre 2</a>
                     <a href=""><img src="assets/img/pikachu.gif" class="news-img"></a>
