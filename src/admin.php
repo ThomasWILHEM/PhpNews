@@ -26,9 +26,9 @@
         </nav>
         <main class="page landing-page" style="height: 80%">
             <!-- Contenu de la page admin -->
-            <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h3>
+            <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h2>
             <h4 style="margin-left: 1% ; text-decoration : underline" >Nombre de news</h4>
-            <div style="margin: 20px 5%">Page admin</h3>
+            <div style="margin: 20px 5%">
                 <label for="newsnu mber">Nombre de news à afficher :</label>
                 <input id="newsnumber" type="number" min="5" max="50" value="20">
             </div>
