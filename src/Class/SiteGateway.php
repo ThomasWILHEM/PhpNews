@@ -1,6 +1,6 @@
 <?php
 
-include("Site.php");
+require_once("Site.php");
 require_once("Connection.php");
 
 class SiteGateway
@@ -16,7 +16,7 @@ class SiteGateway
     }
 
     public function insert(Site $s){
-        $query='INSERT INTO site VALUES(:nom,:lienSite,:logo,:fluxRSS)';
+        $query='INSERT INTO site VALUES(:fluxRSS,:nom,:lienSite,:logo)';
 
         $this->con->executeQuery($query,array(
             ':nom' => array($s->getNom(),PDO::PARAM_STR),
@@ -33,9 +33,28 @@ class SiteGateway
         ));
     }
 
+    public function canInsert(string $fluxRSS) :bool{
+        $query='SELECT * from site WHERE fluxrss=:fluxrss';
+        $this->con->executeQuery($query,array(
+            ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
+        ));
+        return empty($this->con->getResults());
+    }
+
     public function findAllSite():array{
         $query='SELECT * from site';
         $this->con->executeQuery($query);
+        $results=$this->con->getResults();
+        foreach ($results as $row)
+            $tabSites[]=new Site($row['nom'],$row['lien'],$row['logo'],$row['fluxrss']);
+        return $tabSites;
+    }
+
+    public function findByName(string $nom):array{
+        $query='SELECT * from site WHERE nom=:nom';
+        $this->con->executeQuery($query,array(
+            ':nom' => array($nom,PDO::PARAM_STR)
+        ));
         $results=$this->con->getResults();
         foreach ($results as $row)
             $tabSites[]=new Site($row['nom'],$row['lienSite'],$row['logo'],$row['fluxRSS']);

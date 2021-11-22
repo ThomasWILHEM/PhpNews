@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.php">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=loginAdmin">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,16 +36,17 @@
             <h4 style="margin-left: 1% ; text-decoration : underline">Sites référencés</h4>
             <div style="height: 80%  ; margin: 20px 5%">
                 <h5> Ajouter un site </h5>
-                <form action="" method="post" style="margin: 20px">
+                <form action="index.php" method="post" style="margin: 20px">
                     <label for="nomsite">Nom du site : </label>
                     <input style="margin: 0 20px 0 10px" type="text" name="nomsite" id="nomsite">
-                    <label for="lien">Lien du site : </label>
-                    <input style="margin: 0 20px 0 10px" type="url" name="lien" id="lien">
-                    <label for="logo">Logo du site : </label>
-                    <input style="margin: 0 20px 0 10px" type="url" name="logo" id="logo">
+                    <label for="liensite">Lien du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="url" name="liensite" id="liensite">
+                    <label for="logosite">Logo du site : </label>
+                    <input style="margin: 0 20px 0 10px" type="url" name="logosite" id="logosite">
                     <label for="fluxrss">Flux RSS du site : </label>
                     <input style="margin: 0 20px 0 10px" type="url" name="fluxrss" id="fluxrss">
-                    <input style="margin-left: 30px" type="submit" name="ajouterSite" value="Ajouter le site">
+                    <input style="margin-left: 30px" type="submit" value="Ajouter le site">
+                    <input type="hidden" name="action" value="ajouterSite">
                 </form>
 
                 <h5> Supprimer un site </h5>
@@ -56,47 +57,13 @@
                 </form>
 
                 <ul style="overflow-y: scroll; height: 50%; background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px 0 50px">
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
-                    <li>el1</li>
+                    <?php
+                    foreach ($tabSites as $site){
+                        ?>
+                        <li><?php echo $site->getNom(); ?></li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </main>

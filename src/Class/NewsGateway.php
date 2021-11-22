@@ -52,7 +52,7 @@ class NewsGateway
     }
 
     public function findAllNews() : array{
-        $query='SELECT * FROM news';
+        $query='SELECT * FROM news ORDER BY date DESC';
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
         foreach ($results as $row)

@@ -3,14 +3,14 @@
 class Validation
 {
 
-    static function isValidSite(string &$nom,string &$lienSite, string &$logo, string &$fluxRSS, array &$vueErreur):bool{
+    static function isValidSite(string $nom,string $lienSite, string $logo, string $fluxRSS, array &$vueErreur):bool{
 
-        if(!isset($nom)||empty($nom)){
+        if(empty($nom)){
             $vueErreur[]="Le nom est manquant";
             return false;
         }
 
-        if(!isset($lienSite)||empty($lienSite)){
+        if(empty($lienSite)){
             $vueErreur[]="Le lien est manquant";
             return false;
         }elseif(!filter_var($lienSite,FILTER_VALIDATE_URL)){
@@ -18,12 +18,12 @@ class Validation
             return false;
         }
 
-        if(!isset($logo)||empty($logo)){
+        if(empty($logo)){
             $vueErreur[]="Le logo est manquant";
             return false;
         }
 
-        if(!isset($fluxRSS)||empty($fluxRSS)){
+        if(empty($fluxRSS)){
             $vueErreur[]="Le fluxRSS est manquant";
             return false;
         }elseif(!filter_var($fluxRSS,FILTER_VALIDATE_URL)){
@@ -31,23 +31,20 @@ class Validation
             return false;
         }
 
-        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING) || $logo != filter_var($logo, FILTER_SANITIZE_STRING))
+        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING) || $logo != filter_var($logo, FILTER_SANITIZE_URL)
+        || $lienSite != filter_var($lienSite, FILTER_SANITIZE_URL) || $fluxRSS != filter_var($fluxRSS, FILTER_SANITIZE_URL))
         {
-            $vueErreur[]="testative d'injection de code";
+            var_dump($lienSite);
+            var_dump(filter_var($lienSite, FILTER_SANITIZE_EMAIL));
+            $vueErreur[]="tentative d'injection de code";
             return false;
         }
 
-        if ($lienSite != filter_var($lienSite, FILTER_SANITIZE_EMAIL) || $fluxRSS != filter_var($fluxRSS, FILTER_SANITIZE_EMAIL))
-        {
-            $vueErreur[]="testative d'injection de code";
-            return false;
-        }
 
-
-        $nom=filter_var($nom,FILTER_SANITIZE_STRING);               //
-        $lienSite=filter_var($lienSite,FILTER_SANITIZE_URL);        // Toujours utiles grâce aux 2 if du dessus ?
-        $logo=filter_var($logo,FILTER_SANITIZE_STRING);             //
-        $fluxRSS=filter_var($fluxRSS,FILTER_SANITIZE_URL);          //
+//        $nom=filter_var($nom,FILTER_SANITIZE_STRING);               //
+//        $lienSite=filter_var($lienSite,FILTER_SANITIZE_URL);        // Toujours utiles grâce aux 2 if du dessus ?
+//        $logo=filter_var($logo,FILTER_SANITIZE_STRING);             //
+//        $fluxRSS=filter_var($fluxRSS,FILTER_SANITIZE_URL);          //
         return true;
 
     }

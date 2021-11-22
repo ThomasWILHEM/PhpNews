@@ -8,8 +8,7 @@
         echo "Mettre ici la vue d'erreur </br>";
     }else{
         if($login=='root' && $mdp=='mdp')
-            header('Location: admin.php');
+            header('Location: index.php?action=pageAdmin');
         else
             echo("Mot de passe ou login incorrects </br>");
     }
-

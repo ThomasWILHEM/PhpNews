@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="login.php">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="index.php?action=loginAdmin">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,9 +33,9 @@
                     </div>
                     <form method="post" action="verifLogin.php">
                         <div class="mb-3"><label class="form-label" for="username">Nom d'utilisateur</label>
-                            <input class="form-control item" type="text" id="username" name="username"></div>
+                            <input class="form-control item" type="text" id="username" name="username" required></div>
                         <div class="mb-3"><label class="form-label" for="password">Mot de passe</label>
-                            <input class="form-control" type="password" id="password" name="password"></div>
+                            <input class="form-control" type="password" id="password" name="password" required></div>
                         <div class="mb-3">
                             <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label
                                     class="form-check-label" for="checkbox">Se souvenir de moi?</label></div>
