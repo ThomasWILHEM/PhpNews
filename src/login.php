@@ -31,7 +31,7 @@
                     <div class="block-heading">
                         <h2 class="text-info">Connexion</h2>
                     </div>
-                    <form method="post" action="verifLogin.php">
+                    <form method="post" action="index.php?action=verifLogin">
                         <div class="mb-3"><label class="form-label" for="username">Nom d'utilisateur</label>
                             <input class="form-control item" type="text" id="username" name="username" required></div>
                         <div class="mb-3"><label class="form-label" for="password">Mot de passe</label>

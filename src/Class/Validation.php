@@ -47,7 +47,7 @@ class Validation
 
     }
 
-    public static function isValidLogin(string &$login, string &$mdp):bool
+    public static function isValidLogin($login,$mdp):bool
     {
         if (!isset($login) || empty($login)) {
             $vueErreur[] = "Le login est manquant";
@@ -64,8 +64,8 @@ class Validation
             return false;
         }
 
-        $login = filter_var($login, FILTER_SANITIZE_STRING);
-        $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
+//        $login = filter_var($login, FILTER_SANITIZE_STRING);
+//        $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
         return true;
     }
 

@@ -11,6 +11,7 @@ class Controller
         $user="admin";
         $mdp="mdp";
 
+
         try {
             $action=$_REQUEST['action'];
             $con=new Connection($dsn,$user,$mdp);
@@ -24,6 +25,9 @@ class Controller
                 case 'loginAdmin':
                     require ("login.php");
                     break;
+                case 'verifLogin':
+                    $this->verifLogin($dVueErreur);
+                    break;
                 case 'pageAdmin':
                     $sg=new SiteGateway($con);
                     $tabSites=$sg->findAllSite();
@@ -36,12 +40,15 @@ class Controller
                     $this->supprimerSite($dVueErreur,$con);
                     break;
                 default:
+                    $dVueErreur[]="Erreur - Action inconnue";
             }
         }catch (PDOException $PDOException){
             $dVueErreur[]="Erreur innatendu (PDO)";
         }catch (Exception $exception){
             $dVueErreur[]="Erreur innatendu";
         }
+        if(!empty($dVueErreur))
+            require("erreur.php");
     }
 
     private function ajouterSite(array &$dVueErreur, Connection $con){
@@ -61,7 +68,6 @@ class Controller
         }
         else{
             $dVueErreur[]="Erreur validation du site";
-            echo "Erreur validation du site";
         }
     }
 
@@ -75,12 +81,24 @@ class Controller
             }
             else {
                 $dVueErreur[] = "Impossible de supprimer " . $nomSite;
-                var_dump($dVueErreur);
             }
         }else {
             $dVueErreur[] = "Erreur validation du string";
-            echo "Erreur validation du string";
         }
 
+    }
+
+    private function verifLogin(array &$dVueErreur){
+
+        $login=$_POST['username'];
+        $mdp=$_POST['password'];
+        if(!Validation::isValidLogin($login,$mdp)){
+            $dVueErreur[] ="Les informations ne sont pas valides";
+        }else{
+            if($login=='root' && $mdp=='mdp')
+                header('Location: index.php?action=pageAdmin');
+            else
+                $dVueErreur[] ="Mot de passe ou login incorrects";
+        }
     }
 }

@@ -29,7 +29,7 @@
             <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h2>
             <h4 style="margin-left: 1% ; text-decoration : underline" >Nombre de news</h4>
             <div style="margin: 20px 5%">
-                <label for="newsnu mber">Nombre de news à afficher :</label>
+                <label for="newsnu mber">Nombre de news à afficher par page :</label>
                 <input id="newsnumber" type="number" min="5" max="50" value="20">
             </div>
 
@@ -61,7 +61,7 @@
                     <?php
                     foreach ($tabSites as $site){
                         ?>
-                        <li> <img style="height: 20px" src="<?php echo $site->getLogo(); ?>"> <?php echo $site->getNom(); ?></li>
+                        <li style="margin-top: 1%"> <img style="height: 20px" src="<?php echo $site->getLogo(); ?>"> <?php echo $site->getNom(); ?></li>
                         <?php
                     }
                     ?>
