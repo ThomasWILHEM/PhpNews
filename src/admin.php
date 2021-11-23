@@ -54,13 +54,14 @@
                     <label for="searchfordelete">Site à supprimer : </label>
                     <input style="margin-left: 10px" type="text" name="searchfordelete" id="searchfordelete">
                     <input style="margin-left: 30px" type="submit" name="supprimerSite" value="Supprimer le site">
+                    <input type="hidden" name="action" value="supprimerSite">
                 </form>
 
                 <ul style="overflow-y: scroll; height: 50%; background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px 0 50px">
                     <?php
                     foreach ($tabSites as $site){
                         ?>
-                        <li><?php echo $site->getNom(); ?></li>
+                        <li> <img style="height: 20px" src="<?php echo $site->getLogo(); ?>"> <?php echo $site->getNom(); ?></li>
                         <?php
                     }
                     ?>

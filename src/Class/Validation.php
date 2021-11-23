@@ -34,8 +34,6 @@ class Validation
         if ($nom != filter_var($nom, FILTER_SANITIZE_STRING) || $logo != filter_var($logo, FILTER_SANITIZE_URL)
         || $lienSite != filter_var($lienSite, FILTER_SANITIZE_URL) || $fluxRSS != filter_var($fluxRSS, FILTER_SANITIZE_URL))
         {
-            var_dump($lienSite);
-            var_dump(filter_var($lienSite, FILTER_SANITIZE_EMAIL));
             $vueErreur[]="tentative d'injection de code";
             return false;
         }
@@ -70,4 +68,19 @@ class Validation
         $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
         return true;
     }
+
+    public static function isValidString(string $nom, array &$vueErreur):bool
+    {
+        if(empty($nom)){
+            $vueErreur[]="Le nom est manquant";
+            return false;
+        }
+        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING))
+        {
+            $vueErreur[]="tentative d'injection de code";
+            return false;
+        }
+        return true;
+    }
+
 }

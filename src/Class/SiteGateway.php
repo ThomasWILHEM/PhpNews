@@ -26,10 +26,10 @@ class SiteGateway
         ));
     }
 
-    public function delete(Site $s){
-        $query='DELETE FROM site WHERE fluxRSS=:fluxRSS';
-        $this->con->executeQuery($query,array(':fluxRSS' => array(
-            $s->getFluxRSS(),PDO::PARAM_STR)
+    public function delete(String $nom){
+        $query='DELETE FROM site WHERE nom=:nom';
+        $this->con->executeQuery($query,array(
+            ':nom' => array($nom,PDO::PARAM_STR)
         ));
     }
 
@@ -39,6 +39,14 @@ class SiteGateway
             ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
         ));
         return empty($this->con->getResults());
+    }
+
+    public function exists(string $nom) :bool{
+        $query='SELECT * from site WHERE nom=:nom';
+        $this->con->executeQuery($query,array(
+            ':nom' => array($nom,PDO::PARAM_STR)
+        ));
+        return !empty($this->con->getResults());
     }
 
     public function findAllSite():array{
