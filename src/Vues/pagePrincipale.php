@@ -21,7 +21,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="indexAdmin.php?action=loginAdmin">Admin</a>
+                    <a class="nav-link" href="indexAdmin.php">Admin</a>
 
                 </li>
             </ul>

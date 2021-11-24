@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Accueil - PhpNews</title>
-        <link rel="stylesheet" href="Vues/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-        <link rel="stylesheet" href="Vues/assets/css/vanilla-zoom.min.css">
-        <link rel="stylesheet" href="Vues/assets/css/admin.css">
+        <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+        <link rel="stylesheet" href="assets/css/admin.css">
     </head>
 
     <body style="overflow-y: hidden">
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="indexAdmin.php?action=loginAdmin">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <h4 style="margin-left: 1% ; text-decoration : underline">Sites référencés</h4>
             <div style="height: 80%  ; margin: 20px 5%">
                 <h5> Ajouter un site </h5>
-                <form method="post" style="margin: 20px">
+                <form action="index.php" method="post" style="margin: 20px">
                     <label for="nomsite">Nom du site : </label>
                     <input style="margin: 0 20px 0 10px" type="text" name="nomsite" id="nomsite">
                     <label for="liensite">Lien du site : </label>
@@ -50,7 +50,7 @@
                 </form>
 
                 <h5> Supprimer un site </h5>
-                <form method="post" style="margin: 20px">
+                <form action="" method="post" style="margin: 20px">
                     <label for="searchfordelete">Site à supprimer : </label>
                     <input style="margin-left: 10px" type="text" name="searchfordelete" id="searchfordelete">
                     <input style="margin-left: 30px" type="submit" name="supprimerSite" value="Supprimer le site">
