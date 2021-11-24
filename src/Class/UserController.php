@@ -6,7 +6,7 @@ class UserController
     {
         global $rep,$vues;//$base,$user,$mdp;
         session_start();
-        $dVueEreur = array();
+        $dVueErreur = array();
         $base="mysql:host=localhost;dbname=dbphpnews";
         $user="admin";
         $mdp="mdp";
@@ -19,16 +19,16 @@ class UserController
                     $this->showNews($base,$user,$mdp);
                     break;
                 case 'click':
-                    $this->click($dVueEreur);
+                    $this->click($dVueErreur);
                     break;
                 default:
-                    $dVueEreur[] =	"Action demandée inconnu";
+                    $dVueErreur[] =	"Action demandée inconnu";
             }
         } catch (PDOException $e) {
-            $dVueEreur[] =	"Erreur lors de la connexion à la base de données";
+            $dVueErreur[] =	"Erreur lors de la connexion à la base de données";
         }
         catch (Exception $e2) {
-            $dVueEreur[] =	"Erreur inattendue!!!";
+            $dVueErreur[] =	"Erreur inattendue!!!";
         }
         if(!empty($dVueEreur)){
             require ($rep.$vues['erreur']);

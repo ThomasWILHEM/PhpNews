@@ -5,12 +5,9 @@ class AdminController
 
     public function __construct()
     {
-        global $rep,$vues;//$base,$user,$mdp;
+        global $rep,$vues,$base,$user,$mdp;
         session_start();
         $dVueErreur=array();
-        $base="mysql:host=localhost;dbname=dbphpnews";
-        $user="admin";
-        $mdp="mdp";
 
         try {
             $action=$_REQUEST['action'];
@@ -21,7 +18,7 @@ class AdminController
                     $this->chargePageLogin();
                     break;
                 case 'loginAdmin':                  // Pas bon !!!!!
-                    $this->chargePageLogin();       // A modifier car l'action doit être modifiée dans le boutton
+                    $this->chargePageLogin();       // A modifier car l'action doit être modifiée dans le bouton
                     break;                          //
                 case 'verifLogin':
                     $this->verifLogin($dVueErreur);
@@ -44,7 +41,7 @@ class AdminController
             $dVueErreur[]="Erreur innatendu";
         }
         if(!empty($dVueErreur))
-            require($rep."Vues/erreur.php");
+            require($rep.$vues['erreur']);
     }
 
 
@@ -69,30 +66,31 @@ class AdminController
         if(Validation::isValidSite($nomSite,$lienSite,$logoSite,$fluxRSS,$dVueErreur))
         {
             $sg=new SiteGateway($con);
-            if($sg->canInsert($fluxRSS))
+            if($sg->canInsert($fluxRSS)){
                 $sg->insert(new Site($nomSite,$lienSite,$logoSite,$fluxRSS));
+                header("Location: indexAdmin.php?action=pageAdmin");
+            }
             else
                 $dVueErreur[]="Impossible d'inserer ".$fluxRSS;
-            header("Location: index.php?action=pageAdmin");
         }
         else{
             $dVueErreur[]="Erreur validation du site";
         }
     }
 
-    private function supprimerSite(array &$dVueErreur, Connection $con){
+    private function supprimerSite(array &$dVueErreur, Connection $con) {
         $nomSite=$_REQUEST['searchfordelete'];
         if(Validation::isValidString($nomSite,$dVueErreur)){
             $sg=new SiteGateway($con);
             if($sg->exists($nomSite)) {
                 $sg->delete($nomSite);
-                header("Location: index.php?action=pageAdmin");
+                header("Location: indexAdmin.php?action=pageAdmin");
             }
             else {
                 $dVueErreur[] = "Impossible de supprimer " . $nomSite;
             }
         }else {
-            $dVueErreur[] = "Erreur validation du string";
+            $dVueErreur[] = "Erreur de validation";
         }
 
     }
@@ -104,7 +102,7 @@ class AdminController
             $dVueErreur[] ="Les informations ne sont pas valides";
         }else{
             if($login=='root' && $mdp=='mdp')
-                header('Location: index.php?action=pageAdmin');
+                header('Location: indexAdmin.php?action=pageAdmin');
             else
                 $dVueErreur[] ="Mot de passe ou login incorrects";
         }

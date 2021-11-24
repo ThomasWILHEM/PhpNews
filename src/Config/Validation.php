@@ -69,13 +69,13 @@ class Validation
         return true;
     }
 
-    public static function isValidString(string $nom, array &$vueErreur):bool
+    public static function isValidString(string $string, array &$vueErreur):bool
     {
-        if(empty($nom)){
-            $vueErreur[]="Le nom est manquant";
+        if(empty($string)){
+            $vueErreur[]="Le chaine de caractères est vide";
             return false;
         }
-        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING))
+        if ($string != filter_var($string, FILTER_SANITIZE_STRING))
         {
             $vueErreur[]="tentative d'injection de code";
             return false;

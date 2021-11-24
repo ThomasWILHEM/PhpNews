@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Accueil - PhpNews</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Vues/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="Vues/assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="Vues/assets/css/index.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?action=loginAdmin">Admin</a>
+                    <a class="nav-link" href="indexAdmin.php?action=loginAdmin">Admin</a>
 
                 </li>
             </ul>
@@ -33,10 +33,10 @@
         <?php
         foreach ($tabNews as $news){
             ?>
-        <li class="news-item white">
+        <li class="news-item">
             <p class="news-date"><?php echo $news->getDate() ?></p>
             <a href="index.php?action=click&redirectWebsite=https://www.jeuxvideo.com/" class="news-title news-link"><?php echo $news->getTitre() ?></a>
-            <a href=""><img src="assets/img/pikachu.gif" class="news-img"></a>
+            <a href=""><img src="Vues/assets/img/pikachu.gif" class="news-img"></a>
             <a class="news-desc news-link" href="<?php echo $news->getLien() ?>"><?php echo $news->getDescription() ?></a>
         </li>
         <?php

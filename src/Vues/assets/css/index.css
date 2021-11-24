@@ -21,6 +21,14 @@
     border-bottom: 0px;
 }
 
+.news-item:nth-child(2n) {
+    background-color: #ecf0f1;
+}
+
+.news-item:nth-child(2n+1) {
+    background-color: #bdc3c7;
+}
+
 .news-date {
     margin: 0px 10px 0px 0px;
     flex-shrink: 0;
@@ -54,12 +62,4 @@
 .news-link:hover{
     text-decoration: underline;
     color: orange;
-}
-
-.white{
-    background-color: #ecf0f1;
-}
-
-.gray{
-    background-color: #bdc3c7;
 }

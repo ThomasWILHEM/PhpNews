@@ -1,15 +1,12 @@
 <?php
 
-require_once ("Class/Controller.php");
-require_once ("Class/UserController.php");
-require_once ("DAL/Connection.php");
-require_once ("Config/Validation.php");
-require_once ("DAL/NewsGateway.php");
-require_once ("DAL/SiteGateway.php");
-require_once ("Class/AdminController.php");
-require_once("Config/config.php");
+//Chargement de la configuration
+require_once (__DIR__.'/Config/config.php');
 
-//$controller=new Controller();
-//$uController = new UserController();
-$aController = new AdminController();
+//Chargement de l'Autoloader pour charger automatiquement les classes
+require_once (__DIR__.'/Config/Autoload.php');
+Autoload::charger();
+
+//Création du controleur
+$uController = new UserController();
 
