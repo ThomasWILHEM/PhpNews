@@ -83,4 +83,15 @@ class Validation
         return true;
     }
 
+    public static function isValidURL(string $URL,array &$vueErreur):bool {
+        if(empty($URL)){
+            $vueErreur[]="L'URL est invalide";
+            return false;
+        }
+        if($URL != filter_var($URL,FILTER_SANITIZE_URL)){
+            $vueErreur[]="Tentative d'injection de code";
+            return false;
+        }
+        return true;
+    }
 }

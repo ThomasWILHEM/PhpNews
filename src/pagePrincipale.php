@@ -34,7 +34,7 @@
             ?>
         <li class="news-item white">
             <p class="news-date"><?php echo $news->getDate() ?></p>
-            <a href="https://www.jeuxvideo.com/" class="news-title news-link"><?php echo $news->getTitre() ?></a>
+            <a href="index.php?action=click&redirectWebsite=https://www.jeuxvideo.com/" class="news-title news-link"><?php echo $news->getTitre() ?></a>
             <a href=""><img src="assets/img/pikachu.gif" class="news-img"></a>
             <a class="news-desc news-link" href="<?php echo $news->getLien() ?>"><?php echo $news->getDescription() ?></a>
         </li>
