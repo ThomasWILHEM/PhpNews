@@ -1,5 +1,5 @@
 <?php
-
+global $rep;
 require_once ("Connection.php");
 class NewsGateway
 {

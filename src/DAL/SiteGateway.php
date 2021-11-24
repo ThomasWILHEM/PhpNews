@@ -1,7 +1,6 @@
 <?php
 
-require_once("Site.php");
-require_once("Connection.php");
+require_once("Class/Site.php");
 
 class SiteGateway
 {
