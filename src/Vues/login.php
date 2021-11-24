@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Se connecter</button>
-                        <input type="hidden" name="action" value="veriflogin">
+                        <input type="hidden" name="action" value="verifLogin">
                     </form>
                 </div>
             </section>

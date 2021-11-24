@@ -4,12 +4,10 @@ class UserController
 {
     function __construct()
     {
-        global $rep,$vues;//$base,$user,$mdp;
+        global $rep,$vues,$base,$user,$mdp;
         session_start();
         $dVueErreur = array();
-        $base="mysql:host=localhost;dbname=dbphpnews";
-        $user="admin";
-        $mdp="mdp";
+
 
 
         try{

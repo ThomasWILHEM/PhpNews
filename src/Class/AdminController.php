@@ -17,9 +17,6 @@ class AdminController
                 case null:
                     $this->chargePageLogin();
                     break;
-                case 'loginAdmin':                  // Pas bon !!!!!
-                    $this->chargePageLogin();       // A modifier car l'action doit être modifiée dans le bouton
-                    break;                          //
                 case 'verifLogin':
                     $this->verifLogin($dVueErreur);
                     break;
