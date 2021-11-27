@@ -1,5 +1,4 @@
 <?php
-include ('News.php');
 
 class Site
 {

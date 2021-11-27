@@ -6,6 +6,39 @@ class News
     private string $description;
     private string $lien;
     private string $date;
+    private string $idSite;
+
+    /**
+     * @param string $titre
+     * @param string $description
+     * @param string $lien
+     * @param string $date
+     * @param string $idSite
+     */
+    public function __construct(string $titre, string $description, string $lien, string $date, string $idSite)
+    {
+        $this->titre = $titre;
+        $this->description = $description;
+        $this->lien = $lien;
+        $this->date = $date;
+        $this->idSite = $idSite;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdSite(): string
+    {
+        return $this->idSite;
+    }
+
+    /**
+     * @param string $idSite
+     */
+    public function setIdSite(string $idSite): void
+    {
+        $this->idSite = $idSite;
+    }
 
     /**
      * @return string
@@ -71,18 +104,6 @@ class News
         $this->date = $date;
     }
 
-    /**
-     * @param string $titre
-     * @param string $description
-     * @param string $lien
-     * @param string $date
-     */
-    public function __construct(string $titre, string $description, string $lien, string $date)
-    {
-        $this->titre = $titre;
-        $this->description = $description;
-        $this->lien = $lien;
-        $this->date = $date;
-    }
+
 
 }

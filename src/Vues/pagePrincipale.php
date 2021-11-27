@@ -31,22 +31,33 @@
 <main class="page landing-page">
     <ul class="news-list">
         <?php
-        foreach ($tabNews as $news){
+        for($i=0;$i<count($tabNews[0]);$i++){
             ?>
         <li class="news-item">
-            <p class="news-date"><?php echo $news->getDate() ?></p>
-            <a href="index.php?action=click&redirectWebsite=https://www.jeuxvideo.com/" class="news-title news-link"><?php echo $news->getTitre() ?></a>
-            <a href=""><img src="Vues/assets/img/pikachu.gif" class="news-img"></a>
-            <a class="news-desc news-link" href="<?php echo $news->getLien() ?>"><?php echo $news->getDescription() ?></a>
+            <p class="news-date"><?php echo $tabNews[0][$i]->getDate() ?></p>
+            <a href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>" class="news-title news-link"><?php echo $tabNews[0][$i]->getTitre() ?></a>
+            <a href="<?php echo $tabNews[1][$i]->getLienSite() ?>"><img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img"></a>
+            <a class="news-desc news-link" href="<?php echo $tabNews[0][$i]->getLien() ?>"><?php echo $tabNews[0][$i]->getDescription() ?></a>
         </li>
         <?php
         }
         ?>
     </ul>
+    <div>
+        <?php if($page>1){?>
+            <a href="index.php?page=<?php echo $page-1 ?>"><-</a>
+        <?php }
+        ?>
+        <span><?php echo $page ?></span>
+        <?php if($page<$nbPage){?>
+            <a href="index.php?page=<?php echo $page+1 ?>">-></a>
+        <?php }
+        ?>
+    </div>
 </main>
 <footer
-    class="d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-xl-end page-footer dark">
-    <p class="d-lg-flex justify-content-lg-center" style="text-align: center;color: rgb(255,255,255);">Florent
+    class="d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-xl-end page-footer dark footer">
+    <p class="d-lg-flex justify-content-lg-center footer-text" style="text-align: center;color: rgb(255,255,255);">Florent
         MARQUES - G1 - Thomas WILHEM</p>
 </footer>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

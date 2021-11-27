@@ -10,13 +10,14 @@ class NewsGateway
         $this->con=$c;
     }
 
-    public function insert(string $titre, string $description, string $lien, string $date){
-        $query='INSERT INTO news VALUES(:titre,:description,:lien,:date);';
+    public function insert(string $titre, string $description, string $lien, string $date, string $idSite){
+        $query='INSERT INTO news VALUES(:titre,:description,:lien,:date,:idSite);';
         $this->con->executeQuery($query,array(
             ':titre'=> array($titre,PDO::PARAM_STR),
             ':description'=> array($description,PDO::PARAM_STR),
             ':lien'=> array($lien,PDO::PARAM_STR),
-            ':date'=> array($date,PDO::PARAM_STR)
+            ':date'=> array($date,PDO::PARAM_STR),
+            ':idSite' => array($idSite,PDO::PARAM_STR)
         ));
     }
 
@@ -56,8 +57,28 @@ class NewsGateway
         $this->con->executeQuery($query);
         $results=$this->con->getResults();
         foreach ($results as $row)
-            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date']);
+            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date'],$row['idSite']);
         return $tabNews;
+    }
+
+    public function findNews(int $page, int $nbNewsParPage) : array{
+        $first=($page-1)*$nbNewsParPage;
+        $query='SELECT * FROM news ORDER BY date DESC LIMIT :first,:nbNews';
+        $this->con->executeQuery($query,array(
+            ':first' => array($first,PDO::PARAM_INT),
+            ':nbNews' => array($nbNewsParPage,PDO::PARAM_INT)
+        ));
+        $results=$this->con->getResults();
+        foreach ($results as $row)
+            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date'],$row['idSite']);
+        return $tabNews;
+    }
+
+    public function getNbNews():int{
+        $query="SELECT COUNT(*) AS total FROM news";
+        $this->con->executeQuery($query);
+        $tab= $this->con->getResults();
+        return $tab[0][0];
     }
 
 }

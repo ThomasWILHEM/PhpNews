@@ -37,12 +37,6 @@ class Validation
             $vueErreur[]="tentative d'injection de code";
             return false;
         }
-
-
-//        $nom=filter_var($nom,FILTER_SANITIZE_STRING);               //
-//        $lienSite=filter_var($lienSite,FILTER_SANITIZE_URL);        // Toujours utiles grâce aux 2 if du dessus ?
-//        $logo=filter_var($logo,FILTER_SANITIZE_STRING);             //
-//        $fluxRSS=filter_var($fluxRSS,FILTER_SANITIZE_URL);          //
         return true;
 
     }
@@ -63,9 +57,6 @@ class Validation
             $vueErreur[] = "tentative d'injection de code";
             return false;
         }
-
-//        $login = filter_var($login, FILTER_SANITIZE_STRING);
-//        $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
         return true;
     }
 

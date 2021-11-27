@@ -1,7 +1,5 @@
 <?php
 
-require_once("Class/Site.php");
-
 class SiteGateway
 {
     private Connection $con;
@@ -23,6 +21,14 @@ class SiteGateway
             ':logo' => array($s->getLogo(),PDO::PARAM_STR),
             ':fluxRSS' => array($s->getFluxRSS(),PDO::PARAM_STR),
         ));
+    }
+
+    public function findImage(string $fluxRSS):string{
+        $query='SELECT logo from site WHERE fluxrss=:fluxrss';
+        $this->con->executeQuery($query,array(
+            ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
+        ));
+        return $this->con->getResults()[0][0];
     }
 
     public function delete(String $nom){
@@ -57,14 +63,14 @@ class SiteGateway
         return $tabSites;
     }
 
-    public function findByName(string $nom):array{
-        $query='SELECT * from site WHERE nom=:nom';
+    public function findSite(string $fluxRSS):Site{
+        $query='SELECT * from site WHERE fluxrss=:fluxrss';
         $this->con->executeQuery($query,array(
-            ':nom' => array($nom,PDO::PARAM_STR)
+            ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row)
-            $tabSites[]=new Site($row['nom'],$row['lienSite'],$row['logo'],$row['fluxRSS']);
-        return $tabSites;
+
+        return new Site($results[0]['nom'],$results[0]['lien'],$results[0]['logo'],$results[0]['fluxrss']);
+
     }
 }
