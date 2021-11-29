@@ -29,31 +29,53 @@
     </div>
 </nav>
 <main class="page landing-page">
-    <ul class="news-list">
+    <div class="table-responsive m-2 border-5">
+        <table class="table table-striped table-bordered border-dark">
+            <thead>
+            <th>Date de publication</th>
+            <th>Titre</th>
+            <th>Site</th>
+            <th>Description</th>
+            </thead>
         <?php
         for($i=0;$i<count($tabNews[0]);$i++){
             ?>
-        <li class="news-item">
-            <p class="news-date"><?php echo $tabNews[0][$i]->getDate() ?></p>
-            <a href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>" class="news-title news-link"><?php echo $tabNews[0][$i]->getTitre() ?></a>
-            <a href="<?php echo $tabNews[1][$i]->getLienSite() ?>"><img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img"></a>
-            <a class="news-desc news-link" href="<?php echo $tabNews[0][$i]->getLien() ?>"><?php echo $tabNews[0][$i]->getDescription() ?></a>
-        </li>
+            <tr>
+                <td class="news-td"><?php echo $tabNews[0][$i]->getDate() ?></td>
+                <td class="news-td">
+                    <a class="news-link"
+                       href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                        <span><?php echo $tabNews[0][$i]->getTitre() ?></span>
+                    </a>
+                </td>
+                <td class="news-td">
+                    <a class="news-link" href="<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                        <img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img" alt="Logo du site">
+                        <?php echo $tabNews[1][$i]->getNom() ?>
+                    </a>
+                </td>
+                <td class="news-td"><?php echo $tabNews[0][$i]->getDescription() ?></td>
+            </tr>
         <?php
         }
         ?>
-    </ul>
-    <div>
-        <?php if($page>1){?>
-            <a href="index.php?page=<?php echo $page-1 ?>"><-</a>
-        <?php }
-        ?>
-        <span><?php echo $page ?></span>
-        <?php if($page<$nbPage){?>
-            <a href="index.php?page=<?php echo $page+1 ?>">-></a>
-        <?php }
-        ?>
+
+        </table>
     </div>
+    <div style="display: flex; justify-content: center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php if($page>1){?>
+                    <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page-1 ?>">Précédent</a></li>
+                <?php } ?>
+                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+                <?php if($page<$nbPage){?>
+                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page+1 ?>">Suivant</a></li>
+                <?php } ?>
+            </ul>
+        </nav>
+    </div>
+
 </main>
 <footer
     class="d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-xl-end page-footer dark footer">
