@@ -5,6 +5,24 @@ body{
     margin: 0;
 }
 
+.main{
+    margin: 20px 5% auto 5%;
+}
+
+.navShadow{
+    box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);
+}
+
+.m20-0{
+    margin: 20px 0;
+}
+
+.listeSite{
+    background-color: #ededed;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
 .site-item{
     margin-top: 1%;
 }

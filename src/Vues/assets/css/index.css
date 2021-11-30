@@ -1,5 +1,27 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.main{
+    margin: 20px 1% auto 1%;
+}
+
+@media screen and (min-width: 720px) {
+    .main{
+        margin: 40px 5% auto 5%;
+    }
+}
+
+.navShadow{
+    box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);
+}
+
 .news-td{
     height: 60px;
+    vertical-align: middle;
 }
 
 .news-img {
@@ -26,10 +48,8 @@
 
 .footer{
     display: flex;
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
+    height: 60px;
     justify-content: center;
     align-items: center;
     padding: 20px;

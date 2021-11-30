@@ -13,23 +13,23 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><a class="navbar-brand logo" href="">PhpNews</a><button data-bs-toggle="collapse"
-                                                                                   class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
-                        navigation</span><span class="navbar-toggler-icon"></span></button>
+<nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar navShadow">
+    <div class="container">
+        <a class="navbar-brand logo" href="">PhpNews</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="indexAdmin.php">Admin</a>
-
-                </li>
+                <li class="nav-item"><a class="nav-link" href="indexAdmin.php">Admin</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<main class="page landing-page">
-    <div class="table-responsive m-2 border-5">
+<main class="main">
+    <h2>Liste des news</h2>
+    <div class="table-responsive border-5">
         <table class="table table-striped table-bordered border-dark">
             <thead>
             <th>Date de publication</th>
@@ -37,40 +37,43 @@
             <th>Site</th>
             <th>Description</th>
             </thead>
-        <?php
-        for($i=0;$i<count($tabNews[0]);$i++){
+            <?php
+            for ($i = 0; $i < count($tabNews[0]); $i++) {
+                ?>
+                <tr>
+                    <td class="news-td"><?php echo $tabNews[0][$i]->getDate() ?></td>
+                    <td class="news-td">
+                        <a class="news-link"
+                           href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                            <span><?php echo $tabNews[0][$i]->getTitre() ?></span>
+                        </a>
+                    </td>
+                    <td class="news-td">
+                        <a class="news-link" href="<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                            <img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img" alt="Logo du site">
+                            <?php echo $tabNews[1][$i]->getNom() ?>
+                        </a>
+                    </td>
+                    <td class="news-td"><?php echo $tabNews[0][$i]->getDescription() ?></td>
+                </tr>
+                <?php
+            }
             ?>
-            <tr>
-                <td class="news-td"><?php echo $tabNews[0][$i]->getDate() ?></td>
-                <td class="news-td">
-                    <a class="news-link"
-                       href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>">
-                        <span><?php echo $tabNews[0][$i]->getTitre() ?></span>
-                    </a>
-                </td>
-                <td class="news-td">
-                    <a class="news-link" href="<?php echo $tabNews[1][$i]->getLienSite() ?>">
-                        <img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img" alt="Logo du site">
-                        <?php echo $tabNews[1][$i]->getNom() ?>
-                    </a>
-                </td>
-                <td class="news-td"><?php echo $tabNews[0][$i]->getDescription() ?></td>
-            </tr>
-        <?php
-        }
-        ?>
 
         </table>
     </div>
     <div style="display: flex; justify-content: center">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <?php if($page>1){?>
-                    <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page-1 ?>">Précédent</a></li>
+                <?php if ($page > 1) { ?>
+                    <li class="page-item"><a class="page-link"
+                                             href="index.php?page=<?php echo $page - 1 ?>">Précédent</a></li>
                 <?php } ?>
-                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
-                <?php if($page<$nbPage){?>
-                <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page+1 ?>">Suivant</a></li>
+                <li class="page-item"><a class="page-link"
+                                         href="index.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+                <?php if ($page < $nbPage) { ?>
+                    <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $page + 1 ?>">Suivant</a>
+                    </li>
                 <?php } ?>
             </ul>
         </nav>
@@ -78,8 +81,9 @@
 
 </main>
 <footer
-    class="d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-xl-end page-footer dark footer">
-    <p class="d-lg-flex justify-content-lg-center footer-text" style="text-align: center;color: rgb(255,255,255);">Florent
+        class="d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-xl-end page-footer dark footer">
+    <p class="d-lg-flex justify-content-lg-center footer-text" style="text-align: center;color: rgb(255,255,255);">
+        Florent
         MARQUES - G1 - Thomas WILHEM</p>
 </footer>
 <script src="Vues/assets/bootstrap/js/bootstrap.min.js"></script>
