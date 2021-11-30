@@ -76,20 +76,19 @@ class AdminController
     }
 
     private function supprimerSite(array &$dVueErreur, Connection $con) {
-        $nomSite=$_REQUEST['searchfordelete'];
-        if(Validation::isValidString($nomSite,$dVueErreur)){
+        $idWebsite=$_REQUEST['idWebsite'];
+        if(Validation::isValidString($idWebsite,$dVueErreur)){
             $sg=new SiteGateway($con);
-            if($sg->exists($nomSite)) {
-                $sg->delete($nomSite);
+            if($sg->exists($idWebsite)) {
+                $sg->delete($idWebsite);
                 header("Location: indexAdmin.php?action=pageAdmin");
             }
             else {
-                $dVueErreur[] = "Impossible de supprimer " . $nomSite;
+                $dVueErreur[] = "Impossible de supprimer " . $idWebsite;
             }
         }else {
             $dVueErreur[] = "Erreur de validation";
         }
-
     }
 
     private function verifLogin(array &$dVueErreur){

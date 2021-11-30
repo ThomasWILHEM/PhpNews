@@ -23,18 +23,10 @@ class SiteGateway
         ));
     }
 
-    public function findImage(string $fluxRSS):string{
-        $query='SELECT logo from site WHERE fluxrss=:fluxrss';
+    public function delete(String $idWebsite){
+        $query='DELETE FROM site WHERE fluxrss=:fluxrss';
         $this->con->executeQuery($query,array(
-            ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
-        ));
-        return $this->con->getResults()[0][0];
-    }
-
-    public function delete(String $nom){
-        $query='DELETE FROM site WHERE nom=:nom';
-        $this->con->executeQuery($query,array(
-            ':nom' => array($nom,PDO::PARAM_STR)
+            ':fluxrss' => array($idWebsite,PDO::PARAM_STR)
         ));
     }
 
@@ -46,10 +38,10 @@ class SiteGateway
         return empty($this->con->getResults());
     }
 
-    public function exists(string $nom) :bool{
-        $query='SELECT * from site WHERE nom=:nom';
+    public function exists(string $fluxRSS) :bool{
+        $query='SELECT * from site WHERE fluxrss=:fluxrss';
         $this->con->executeQuery($query,array(
-            ':nom' => array($nom,PDO::PARAM_STR)
+            ':fluxrss' => array($fluxRSS,PDO::PARAM_STR)
         ));
         return !empty($this->con->getResults());
     }

@@ -51,19 +51,26 @@
                     <input type="hidden" name="action" value="ajouterSite">
                 </form>
 
-                <h5> Supprimer un site </h5>
-                <form action="" method="post" style="margin: 20px">
-                    <label for="searchfordelete">Site à supprimer : </label>
-                    <input style="margin-left: 10px" type="text" name="searchfordelete" id="searchfordelete">
-                    <input style="margin-left: 30px" type="submit" name="supprimerSite" value="Supprimer le site">
-                    <input type="hidden" name="action" value="supprimerSite">
-                </form>
-
-                <ul style="overflow-y: scroll; height: 50%; background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px 0 50px">
+                <ul style="background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px">
                     <?php
                     foreach ($tabSites as $site){
                         ?>
-                        <li style="margin-top: 1%"> <img style="height: 20px" src="<?php echo $site->getLogo(); ?>"> <?php echo $site->getNom(); ?></li>
+                        <li class="site-item">
+                            <div style="width: 100%">
+                                <div class="row m-0">
+                                    <div class="col">
+                                        <img style="height: 20px" src="<?php echo $site->getLogo(); ?>">
+                                        <span><?php echo $site->getNom(); ?></span>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a style="align-self: end" href="indexAdmin.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
+                                            <img width="24" height="24" src="Vues/assets/img/remove.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
                         <?php
                     }
                     ?>
