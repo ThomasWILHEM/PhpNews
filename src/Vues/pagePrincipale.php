@@ -82,10 +82,10 @@
     <p class="d-lg-flex justify-content-lg-center footer-text" style="text-align: center;color: rgb(255,255,255);">Florent
         MARQUES - G1 - Thomas WILHEM</p>
 </footer>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="Vues/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-<script src="assets/js/vanilla-zoom.js"></script>
-<script src="assets/js/theme.js"></script>
+<script src="Vues/assets/js/vanilla-zoom.js"></script>
+<script src="Vues/assets/js/theme.js"></script>
 </body>
 
 </html>

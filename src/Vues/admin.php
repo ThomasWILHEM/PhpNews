@@ -11,11 +11,14 @@
         <link rel="stylesheet" href="Vues/assets/css/admin.css">
     </head>
 
-    <body style="overflow-y: hidden">
+    <body>
         <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-            <div class="container"><a class="navbar-brand logo" href="index.php">PhpNews</a><button data-bs-toggle="collapse"
-                    class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
-                        navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container">
+                <a class="navbar-brand logo" href="index.php">PhpNews</a>
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
@@ -24,17 +27,16 @@
                 </div>
             </div>
         </nav>
-        <main class="page landing-page" style="height: 80%">
-            <!-- Contenu de la page admin -->
+        <main style="margin: auto">
             <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h2>
             <h4 style="margin-left: 1% ; text-decoration : underline" >Nombre de news</h4>
             <div style="margin: 20px 5%">
-                <label for="newsnu mber">Nombre de news à afficher par page :</label>
+                <label for="newsnumber">Nombre de news à afficher par page :</label>
                 <input id="newsnumber" type="number" min="5" max="50" value="20">
             </div>
 
             <h4 style="margin-left: 1% ; text-decoration : underline">Sites référencés</h4>
-            <div style="height: 80%  ; margin: 20px 5%">
+            <div style="margin: 20px 5%">
                 <h5> Ajouter un site </h5>
                 <form action="" method="post" style="margin: 20px">
                     <label for="nomsite">Nom du site : </label>
@@ -49,19 +51,26 @@
                     <input type="hidden" name="action" value="ajouterSite">
                 </form>
 
-                <h5> Supprimer un site </h5>
-                <form action="" method="post" style="margin: 20px">
-                    <label for="searchfordelete">Site à supprimer : </label>
-                    <input style="margin-left: 10px" type="text" name="searchfordelete" id="searchfordelete">
-                    <input style="margin-left: 30px" type="submit" name="supprimerSite" value="Supprimer le site">
-                    <input type="hidden" name="action" value="supprimerSite">
-                </form>
-
-                <ul style="overflow-y: scroll; height: 50%; background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px 0 50px">
+                <ul style="background-color: #ededed;border: 1px solid black; border-radius: 10px; margin: 40px 50px">
                     <?php
                     foreach ($tabSites as $site){
                         ?>
-                        <li style="margin-top: 1%"> <img style="height: 20px" src="<?php echo $site->getLogo(); ?>"> <?php echo $site->getNom(); ?></li>
+                        <li class="site-item">
+                            <div style="width: 100%">
+                                <div class="row m-0">
+                                    <div class="col">
+                                        <img style="height: 20px" src="<?php echo $site->getLogo(); ?>">
+                                        <span><?php echo $site->getNom(); ?></span>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a style="align-self: end" href="indexAdmin.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
+                                            <img width="24" height="24" src="Vues/assets/img/remove.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
                         <?php
                     }
                     ?>
@@ -71,10 +80,10 @@
         <footer class="footer">
             <p class="footer-text">Florent MARQUES - G1 - Thomas WILHEM</p>
         </footer>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="Vues/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-        <script src="assets/js/vanilla-zoom.js"></script>
-        <script src="assets/js/theme.js"></script>
+        <script src="Vues/assets/js/vanilla-zoom.js"></script>
+        <script src="Vues/assets/js/theme.js"></script>
     </body>
 
 </html>
