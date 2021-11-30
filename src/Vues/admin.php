@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar" style="box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);">
             <div class="container">
                 <a class="navbar-brand logo" href="index.php">PhpNews</a>
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
