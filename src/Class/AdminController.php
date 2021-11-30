@@ -27,7 +27,7 @@ class AdminController
                     $this->ajouterSite($dVueErreur);
                     break;
                 case 'supprimerSite':
-                    $this->supprimerSite($dVueErreur,$con);
+                    $this->supprimerSite($dVueErreur);
                     break;
                 default:
                     $dVueErreur[]="Erreur - Action inconnue";
@@ -64,7 +64,8 @@ class AdminController
         {
             $model=new Modele();
             $model->ajouterSiteM($dVueErreur,$nomSite,$lienSite,$logoSite,$fluxRSS);
-            header("Location: indexAdmin.php?action=pageAdmin");
+            if(empty($dVueErreur))
+                header("Location: indexAdmin.php?action=pageAdmin");
 
         }
         else{
@@ -72,18 +73,15 @@ class AdminController
         }
     }
 
-    private function supprimerSite(array &$dVueErreur, Connection $con) {
+    private function supprimerSite(array &$dVueErreur) {
         $idWebsite=$_REQUEST['idWebsite'];
         if(Validation::isValidString($idWebsite,$dVueErreur)){
-            $sg=new SiteGateway($con);
-            if($sg->exists($idWebsite)) {
-                $sg->delete($idWebsite);
+            $model=new Modele();
+            $model->supprimerSiteM($dVueErreur,$idWebsite);
+            if(empty($dVueErreur))
                 header("Location: indexAdmin.php?action=pageAdmin");
-            }
-            else {
-                $dVueErreur[] = "Impossible de supprimer " . $idWebsite;
-            }
-        }else {
+        }
+        else{
             $dVueErreur[] = "Erreur de validation";
         }
     }

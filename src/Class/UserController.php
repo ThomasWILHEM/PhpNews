@@ -47,7 +47,7 @@ class UserController
         $nbPage=0;
         $model=new Modele();
         $page=isset($_REQUEST['page'])? $_REQUEST['page'] : 1;
-        $nbNewsParPage=3; //A set plus tard dans la base
+        $nbNewsParPage=5; //A set plus tard dans la base
         $tabNews=$model->chargeNewsParPageM($page,$nbNewsParPage,$nbPage);
         require($rep.$vues['principale']);
     }

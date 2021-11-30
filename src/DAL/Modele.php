@@ -39,4 +39,15 @@ class Modele
         else
             $dVueErreur[]="Impossible d'inserer ".$fluxRSS;
     }
+
+    public function supprimerSiteM(array &$dVueErreur,string $idWebsite){
+        global $base,$user,$mdp;
+        $sg=new SiteGateway(new Connection($base,$user,$mdp));
+        if($sg->exists($idWebsite)) {
+            $sg->delete($idWebsite);
+        }
+        else {
+            $dVueErreur[] = "Impossible de supprimer " . $idWebsite;
+        }
+    }
 }
