@@ -13,9 +13,6 @@ class UserController
         try{
             $action=$_REQUEST['action'];
             switch($action) {
-                /*case NULL:
-                    $this->showNews($base,$user,$mdp);
-                    break;*/
                 case NULL:
                     $this->chargeParPage($dVueErreur,$base,$user,$mdp);
                     break;
@@ -37,12 +34,6 @@ class UserController
         exit(0);
     }
 
-    private function showNews(string $dsn,string $user, string $mdp){
-        global $rep,$vues;
-        $ng = new NewsGateway(new Connection($dsn,$user,$mdp));
-        $tabNews=$ng->findAllNews();
-        require($rep."Vues/pagePrincipale.php");
-    }
 
     private function click(array &$dVueErreur){
         $redirectWebsite=$_REQUEST['redirectWebsite'];
@@ -53,25 +44,11 @@ class UserController
 
     private function chargeParPage(array &$dVueErreur, string $dsn,string $user, string $mdp){
         global $rep,$vues;
-        $tabNews=[[]];
-        $con = new Connection($dsn,$user,$mdp);
-        $ng=new NewsGateway($con);
+        $nbPage=0;
+        $model=new Modele();
         $page=isset($_REQUEST['page'])? $_REQUEST['page'] : 1;
         $nbNewsParPage=3; //A set plus tard dans la base
-        $nbNewsTotal=$ng->getNbNews();
-        $nbPage=ceil($nbNewsTotal/$nbNewsParPage);
-        if(empty($page) && $page != 0){
-            $dVueErreur[]="Problème avec l'indice de la page";
-            require ($rep.$vues['erreur']);
-        }
-        if($page <= 0)
-            $page=1;
-        if($page >$nbPage)
-            $page=$nbPage;
-        $tabNews[0]=$ng->findNews($page,$nbNewsParPage);
-        $sg=new SiteGateway($con);
-        for($i=0;$i<count($tabNews[0]);$i++)
-            $tabNews[1][$i]=$sg->findSite($tabNews[0][$i]->getIdSite());
-        require($rep."Vues/pagePrincipale.php");
+        $tabNews=$model->chargeNewsParPageM($page,$nbNewsParPage,$nbPage);
+        require($rep.$vues['principale']);
     }
 }

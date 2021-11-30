@@ -21,10 +21,10 @@ class AdminController
                     $this->verifLogin($dVueErreur);
                     break;
                 case 'pageAdmin':
-                    $this->chargePageAdmin($con);
+                    $this->chargePageAdmin();
                     break;
                 case 'ajouterSite':
-                    $this->ajouterSite($dVueErreur,$con);
+                    $this->ajouterSite($dVueErreur);
                     break;
                 case 'supprimerSite':
                     $this->supprimerSite($dVueErreur,$con);
@@ -47,14 +47,14 @@ class AdminController
         require ($rep.$vues['login']);
     }
 
-    private function chargePageAdmin(Connection $con){
+    private function chargePageAdmin(){
         global $rep,$vues;
-        $sg=new SiteGateway($con);
-        $tabSites=$sg->findAllSite();
+        $model=new Modele();
+        $tabSites=$model->chargerPageAdminM();
         require ($rep.$vues['admin']);
     }
 
-    private function ajouterSite(array &$dVueErreur, Connection $con){
+    private function ajouterSite(array &$dVueErreur){
         $nomSite=$_REQUEST['nomsite'];
         $lienSite=$_REQUEST['liensite'];
         $logoSite=$_REQUEST['logosite'];
@@ -62,13 +62,10 @@ class AdminController
 
         if(Validation::isValidSite($nomSite,$lienSite,$logoSite,$fluxRSS,$dVueErreur))
         {
-            $sg=new SiteGateway($con);
-            if($sg->canInsert($fluxRSS)){
-                $sg->insert(new Site($nomSite,$lienSite,$logoSite,$fluxRSS));
-                header("Location: indexAdmin.php?action=pageAdmin");
-            }
-            else
-                $dVueErreur[]="Impossible d'inserer ".$fluxRSS;
+            $model=new Modele();
+            $model->ajouterSiteM($dVueErreur,$nomSite,$lienSite,$logoSite,$fluxRSS);
+            header("Location: indexAdmin.php?action=pageAdmin");
+
         }
         else{
             $dVueErreur[]="Erreur validation du site";
