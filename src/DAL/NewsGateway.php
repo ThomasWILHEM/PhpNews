@@ -1,83 +1,90 @@
 <?php
-global $rep;
-require_once ("Connection.php");
+
 class NewsGateway
 {
     private $con;
 
     public function __construct(Connection $c)
     {
-        $this->con=$c;
+        $this->con = $c;
     }
 
-    public function insert(string $titre, string $description, string $lien, string $date, string $idSite){
-        $query='INSERT INTO news VALUES(:titre,:description,:lien,:date,:idSite);';
-        $this->con->executeQuery($query,array(
-            ':titre'=> array($titre,PDO::PARAM_STR),
-            ':description'=> array($description,PDO::PARAM_STR),
-            ':lien'=> array($lien,PDO::PARAM_STR),
-            ':date'=> array($date,PDO::PARAM_STR),
-            ':idSite' => array($idSite,PDO::PARAM_STR)
+    public function insert(string $titre, string $description, string $lien, string $date, string $idSite)
+    {
+        $query = 'INSERT INTO news VALUES(:titre,:description,:lien,:date,:idSite);';
+        $this->con->executeQuery($query, array(
+            ':titre' => array($titre, PDO::PARAM_STR),
+            ':description' => array($description, PDO::PARAM_STR),
+            ':lien' => array($lien, PDO::PARAM_STR),
+            ':date' => array($date, PDO::PARAM_STR),
+            ':idSite' => array($idSite, PDO::PARAM_STR)
         ));
     }
 
-    public function delete(string $lien){
-        $query='DELETE FROM news WHERE lien=:lien';
-        $this->con->executeQuery($query,array(
-            ':lien'=> array($lien,PDO::PARAM_STR)
+    public function delete(string $lien)
+    {
+        $query = 'DELETE FROM news WHERE lien=:lien';
+        $this->con->executeQuery($query, array(
+            ':lien' => array($lien, PDO::PARAM_STR)
         ));
     }
 
-    public function updateTitre(string $lien,string $newTitre){
-        $query='UPDATE news SET titre=:newTitre WHERE lien=:lien';
-        $this->con->executeQuery($query,array(
-            ':lien'=> array($lien,PDO::PARAM_STR),
-            ':newTitre' => array($newTitre,PDO::PARAM_STR)
+    public function updateTitre(string $lien, string $newTitre)
+    {
+        $query = 'UPDATE news SET titre=:newTitre WHERE lien=:lien';
+        $this->con->executeQuery($query, array(
+            ':lien' => array($lien, PDO::PARAM_STR),
+            ':newTitre' => array($newTitre, PDO::PARAM_STR)
         ));
     }
 
-    public function updateDescription(string $lien,string $newDescription){
-        $query='UPDATE news SET description=:newDescription WHERE lien=:lien';
-        $this->con->executeQuery($query,array(
-            ':lien'=> array($lien,PDO::PARAM_STR),
-            ':newDescription' => array($newDescription,PDO::PARAM_STR)
+    public function updateDescription(string $lien, string $newDescription)
+    {
+        $query = 'UPDATE news SET description=:newDescription WHERE lien=:lien';
+        $this->con->executeQuery($query, array(
+            ':lien' => array($lien, PDO::PARAM_STR),
+            ':newDescription' => array($newDescription, PDO::PARAM_STR)
         ));
     }
 
-    public function updateDate(string $lien,string $newDate){
-        $query='UPDATE news SET date=:newDate WHERE lien=:lien';
-        $this->con->executeQuery($query,array(
-            ':lien'=> array($lien,PDO::PARAM_STR),
-            ':newDate' => array($newDate,PDO::PARAM_STR)
+    public function updateDate(string $lien, string $newDate)
+    {
+        $query = 'UPDATE news SET date=:newDate WHERE lien=:lien';
+        $this->con->executeQuery($query, array(
+            ':lien' => array($lien, PDO::PARAM_STR),
+            ':newDate' => array($newDate, PDO::PARAM_STR)
         ));
     }
 
-    public function findAllNews() : array{
-        $query='SELECT * FROM news ORDER BY date DESC';
+    public function findAllNews(): array
+    {
+        $query = 'SELECT * FROM news ORDER BY date DESC';
         $this->con->executeQuery($query);
-        $results=$this->con->getResults();
+        $results = $this->con->getResults();
         foreach ($results as $row)
-            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date'],$row['idSite']);
+            $tabNews[] = new News($row['titre'], $row['description'], $row['lien'], $row['date'], $row['idSite']);
         return $tabNews;
     }
 
-    public function findNews(int $page, int $nbNewsParPage) : array{
-        $first=($page-1)*$nbNewsParPage;
-        $query='SELECT * FROM news ORDER BY date DESC LIMIT :first,:nbNews';
-        $this->con->executeQuery($query,array(
-            ':first' => array($first,PDO::PARAM_INT),
-            ':nbNews' => array($nbNewsParPage,PDO::PARAM_INT)
+    public function findNews(int $page, int $nbNewsParPage): array
+    {
+        $first = ($page - 1) * $nbNewsParPage;
+        $query = 'SELECT * FROM news ORDER BY date DESC LIMIT :first,:nbNews';
+        $this->con->executeQuery($query, array(
+            ':first' => array($first, PDO::PARAM_INT),
+            ':nbNews' => array($nbNewsParPage, PDO::PARAM_INT)
         ));
-        $results=$this->con->getResults();
+        $results = $this->con->getResults();
         foreach ($results as $row)
-            $tabNews[]=new News($row['titre'],$row['description'],$row['lien'],$row['date'],$row['idSite']);
+            $tabNews[] = new News($row['titre'], $row['description'], $row['lien'], $row['date'], $row['idSite']);
         return $tabNews;
     }
 
-    public function getNbNews():int{
-        $query="SELECT COUNT(*) AS total FROM news";
+    public function getNbNews(): int
+    {
+        $query = "SELECT COUNT(*) AS total FROM news";
         $this->con->executeQuery($query);
-        $tab= $this->con->getResults();
+        $tab = $this->con->getResults();
         return $tab[0][0];
     }
 

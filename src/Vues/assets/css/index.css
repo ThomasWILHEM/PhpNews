@@ -1,25 +1,25 @@
-body{
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
 }
 
-.main{
+.main {
     margin: 20px 1% auto 1%;
 }
 
 @media screen and (min-width: 720px) {
-    .main{
+    .main {
         margin: 40px 5% auto 5%;
     }
 }
 
-.navShadow{
+.navShadow {
     box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);
 }
 
-.news-td{
+.news-td {
     height: 60px;
     vertical-align: middle;
 }
@@ -30,23 +30,23 @@ body{
     border-radius: 10%;
 }
 
-.news-link{
+.news-link {
     text-decoration: none;
     color: #212529;
 }
 
-.news-link:hover{
+.news-link:hover {
     text-decoration: underline;
     color: orange;
 }
 
-.footer-text{
+.footer-text {
     text-align: center;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     margin: 0;
 }
 
-.footer{
+.footer {
     display: flex;
     width: 100%;
     height: 60px;

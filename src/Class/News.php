@@ -6,6 +6,9 @@ class News
     private string $description;
     private string $lien;
     private string $date;
+    /**
+     * @var string Identifiant du site vers lequel la news est associé.
+     */
     private string $idSite;
 
     /**
@@ -103,7 +106,6 @@ class News
     {
         $this->date = $date;
     }
-
 
 
 }

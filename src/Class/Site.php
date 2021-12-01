@@ -13,7 +13,6 @@ class Site
      * @param string $logo
      * @param string $fluxRSS
      */
-
     public function __construct(string $nom, string $lienSite, string $logo, string $fluxRSS)
     {
         $this->nom = $nom;
