@@ -93,7 +93,7 @@ class AdminController
     private function supprimerSite(array &$dVueErreur)
     {
         $idWebsite = $_REQUEST['idWebsite'];
-        if (Validation::isValidString($idWebsite, $dVueErreur)) {
+        if (Validation::isValidURL($idWebsite, $dVueErreur)) {
             $model = new Modele();
             $model->supprimerSiteM($dVueErreur, $idWebsite);
             if (empty($dVueErreur))

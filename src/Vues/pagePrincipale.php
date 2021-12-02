@@ -73,13 +73,13 @@
                         echo '<li class="page-item"><a class="page-link" href="index.php?page=1">1</a></li>';
                     }
                     if ($page > 1) {
-                        echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page - 1) . '">&lt&lt</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page - 1) . '">&lt</a></li>';
                     }
 
                     echo '<li class="page-item active"><a class="page-link" href="index.php?page=' . $page . '">' . $page . '</a></li>';
 
                     if ($page < $nbPage) {
-                        echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page + 1) . '">&gt&gt</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="index.php?page=' . ($page + 1) . '">&gt</a></li>';
                     }
                     if ($page + 1 < $nbPage) {
                         echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $nbPage . '">' . $nbPage . '</a></li>';
@@ -90,7 +90,7 @@
         </div>
 
         <?php
-    } else echo "<h3 class='text-center'>Aucune news à afficher</h3>"
+    } else echo "<h3 class='text-center mt-4'>Aucune news à afficher</h3>"
     ?>
 
 </main>

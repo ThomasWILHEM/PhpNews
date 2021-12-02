@@ -57,7 +57,7 @@ class SiteGateway
         $results = $this->con->getResults();
         foreach ($results as $row)
             $tabSites[] = new Site($row['nom'], $row['lien'], $row['logo'], $row['fluxrss']);
-        return $tabSites;
+        return $tabSites ?? [];
     }
 
     public function findSite(string $fluxRSS): Site

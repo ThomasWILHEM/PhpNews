@@ -3,32 +3,25 @@
 class Validation
 {
 
-    static function isValidSite(string $nom, string $lienSite, string $logo, string $fluxRSS, array &$vueErreur): bool
+    public static function isValidSite(string $nom, string $lienSite, string $logo, string $fluxRSS, array &$vueErreur): bool
     {
-
-        if (empty($nom)) {
-            $vueErreur[] = "Le nom est manquant";
+        if(!self::isValidString($nom,$vueErreur)){
+            $vueErreur[] = "Chaine de caractères manquante: nom du site";
             return false;
         }
 
-        if (empty($lienSite)) {
-            $vueErreur[] = "Le lien est manquant";
-            return false;
-        } elseif (!filter_var($lienSite, FILTER_VALIDATE_URL)) {
-            $vueErreur[] = "Le lien n'est pas dans le bon format";
+        if (!self::isValidURL($lienSite, $vueErreur)) {
+            $vueErreur[] = "URL manquante: lien du site";
             return false;
         }
 
-        if (empty($logo)) {
-            $vueErreur[] = "Le logo est manquant";
+        if (!self::isValidURL($logo, $vueErreur)) {
+            $vueErreur[] = "URL manquante: lien du logo";
             return false;
         }
 
-        if (empty($fluxRSS)) {
-            $vueErreur[] = "Le fluxRSS est manquant";
-            return false;
-        } elseif (!filter_var($fluxRSS, FILTER_VALIDATE_URL)) {
-            $vueErreur[] = "Le fluxRSS n'est pas dans le bon format";
+        if (!self::isValidURL($fluxRSS, $vueErreur)) {
+            $vueErreur[] = "URL manquante: lien du flux RSS";
             return false;
         }
 
@@ -38,7 +31,6 @@ class Validation
             return false;
         }
         return true;
-
     }
 
     public static function isValidLogin($login, $mdp, &$vueErreur): bool
@@ -63,11 +55,11 @@ class Validation
     public static function isValidString(string $string, array &$vueErreur): bool
     {
         if (empty($string)) {
-            $vueErreur[] = "Le chaine de caractères est vide";
+            $vueErreur[] = "Le chaine de caractères est manquante ou vide";
             return false;
         }
         if ($string != filter_var($string, FILTER_SANITIZE_STRING)) {
-            $vueErreur[] = "tentative d'injection de code";
+            $vueErreur[] = "Tentative d'injection de code";
             return false;
         }
         return true;
@@ -76,11 +68,15 @@ class Validation
     public static function isValidURL(string $URL, array &$vueErreur): bool
     {
         if (empty($URL)) {
-            $vueErreur[] = "L'URL est invalide";
+            $vueErreur[] = "L'URL est manquante ou vide";
             return false;
         }
         if ($URL != filter_var($URL, FILTER_SANITIZE_URL)) {
             $vueErreur[] = "Tentative d'injection de code";
+            return false;
+        }
+        if (!filter_var($URL, FILTER_VALIDATE_URL)) {
+            $vueErreur[] = "Le lien n'est pas dans le bon format";
             return false;
         }
         return true;

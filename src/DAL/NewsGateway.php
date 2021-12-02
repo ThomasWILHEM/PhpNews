@@ -82,7 +82,7 @@ class NewsGateway
 
     public function getNbNews(): int
     {
-        $query = "SELECT COUNT(*) AS total FROM news";
+        $query = "SELECT COUNT(*) FROM news";
         $this->con->executeQuery($query);
         $tab = $this->con->getResults();
         return $tab[0][0];

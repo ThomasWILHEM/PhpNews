@@ -28,12 +28,12 @@
     </div>
 </nav>
 <main class="main">
-    <h2 style="text-align: center; margin-top: 40px ; font-weight: bold">Page admin</h2>
+    <h2 class="adminTitle">Page admin</h2>
     <div class="m20-0">
         <h4 class="text-decoration-underline">Nombre de news</h4>
         <div>
             <label for="newsnumber">Nombre de news à afficher par page :</label>
-            <input id="newsnumber" type="number" min="5" max="50" value="20">
+            <input id="newsnumber" type="number" min="1" max="30" value="10" required>
         </div>
     </div>
 
@@ -41,13 +41,13 @@
         <h4 class="text-decoration-underline"> Ajouter un site </h4>
         <form method="post">
             <label for="nomsite">Nom du site : </label>
-            <input style="margin: 0 20px 0 10px" type="text" name="nomsite" id="nomsite">
+            <input style="margin: 0 20px 0 10px" type="text" name="nomsite" id="nomsite" required>
             <label for="liensite">Lien du site : </label>
-            <input style="margin: 0 20px 0 10px" type="url" name="liensite" id="liensite">
+            <input style="margin: 0 20px 0 10px" type="url" name="liensite" id="liensite" required>
             <label for="logosite">Logo du site : </label>
-            <input style="margin: 0 20px 0 10px" type="url" name="logosite" id="logosite">
+            <input style="margin: 0 20px 0 10px" type="url" name="logosite" id="logosite" required>
             <label for="fluxrss">Flux RSS du site : </label>
-            <input style="margin: 0 20px 0 10px" type="url" name="fluxrss" id="fluxrss">
+            <input style="margin: 0 20px 0 10px" type="url" name="fluxrss" id="fluxrss" required>
             <input style="margin-left: 30px" type="submit" value="Ajouter le site">
             <input type="hidden" name="action" value="ajouterSite">
         </form>
@@ -56,24 +56,30 @@
         <h4 class="text-decoration-underline">Sites référencés</h4>
         <ul class="listeSite m20-0">
             <?php
-            foreach ($tabSites as $site) {
-                ?>
-                <li class="site-item">
-                    <div class="row m-0">
-                        <div class="col">
-                            <img height="20px" src="<?php echo $site->getLogo(); ?>">
-                            <span><?php echo $site->getNom(); ?></span>
+            if(!empty($tabSites)){
+                foreach ($tabSites as $site) {
+                    ?>
+                    <li class="site-item">
+                        <div class="row m-0">
+                            <div class="col">
+                                <a class="btn" href="<?php echo $site->getLienSite(); ?>">
+                                    <img height="20px" src="<?php echo $site->getLogo(); ?>">
+                                    <span class="ml"><?php echo $site->getNom(); ?></span>
+                                </a>
+
+                            </div>
+                            <div class="col-sm-auto">
+                                <a style="align-self: end"
+                                   href="indexAdmin.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
+                                    <img width="24" height="24" src="Vues/assets/img/remove.png">
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-sm-auto">
-                            <a style="align-self: end"
-                               href="indexAdmin.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
-                                <img width="24" height="24" src="Vues/assets/img/remove.png">
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <?php
+                    </li>
+                    <?php
+                }
             }
+            else echo "<h3 class='text-center'>Aucune news à afficher</h3>";
             ?>
         </ul>
     </div>

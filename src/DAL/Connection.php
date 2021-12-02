@@ -10,7 +10,6 @@ class Connection extends PDO
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-
     /** * @param string $query
      * @param array $parameters *
      * @return bool Returns `true` on success, `false` otherwise

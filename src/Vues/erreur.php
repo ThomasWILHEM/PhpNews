@@ -28,12 +28,13 @@
 <main class="main">
     <?php
     if (!empty($dVueErreur)) {
+        echo "<h1 class='text-danger text-center'><b>Erreur !!</b></h1>";
         foreach ($dVueErreur as $error)
-            echo("<h1 class='text-center'><b>" . $error . "</b></h1>");
-    } else {
+            echo("<h2 class='text-center'><b>" . $error . "</b></h2>");
+    } else
         echo("<h1 class='text-center'><b>Aucune erreur</b></h1>");
-    }
-    echo '<a href="' . $_SERVER['PHP_SELF'] . '">Retour sur la page précédente</a>'
+
+    echo '<a href="' . $_SERVER['PHP_SELF'] . '">Retour sur la page précédente</a>';
     ?>
 </main>
 <footer class="footer">

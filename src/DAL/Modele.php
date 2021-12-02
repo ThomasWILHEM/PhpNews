@@ -8,6 +8,12 @@ class Modele
         $tabNews = [[]];
         $ng = new NewsGateway(new Connection($base, $user, $mdp));
         $nbNewsTotal = $ng->getNbNews();
+        if($nbNewsTotal==0)
+            return [];
+        if($nbNewsParPage==0) {
+            $dVueErreur[] = "Problème avec le nombre de news à afficher par page (0)";
+            return [];
+        }
         $nbPage = ceil($nbNewsTotal / $nbNewsParPage);
         if (empty($page) || $page <= 0 || $page > $nbPage) {
             $dVueErreur[] = "Problème avec l'indice de la page";
