@@ -18,10 +18,11 @@ class AdminGateway
             ':login' => array($login,PDO::PARAM_STR)
         ));
         $results = $this->con->getResults();
+
         if(count($results)!=1){
             return false;
         }
-        return password_verify($password,$results['hash_password']);
+        return password_verify($password,$results[0]['hash_password']);
     }
 
 

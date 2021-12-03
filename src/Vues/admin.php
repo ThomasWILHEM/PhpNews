@@ -23,6 +23,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
                 <li class="nav-item"><a class="nav-link active" href="index.php?action=admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?action=deconnexion">Déconnexion</a></li>
             </ul>
         </div>
     </div>

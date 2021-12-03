@@ -25,8 +25,11 @@ class AdminController
                 case 'supprimerSite':
                     $this->supprimerSite($dVueErreur);
                     break;
+                case 'deconnexion':
+                    $this->deconnexion();
+                    break;
                 default:
-                    $dVueErreur[] = "Erreur - Action inconnue (AdminController)";
+                    $dVueErreur[] = "Erreur - Action inconnue";
             }
         } catch (PDOException $PDOException) {
             $dVueErreur[] = "Erreur innatendu (PDO)";
@@ -38,21 +41,12 @@ class AdminController
     }
 
     /**
-     * Charge la page de connexion pour l'administrateur.
-     */
-    private function chargePageLogin()
-    {
-        global $rep, $vues;
-        require($rep . $vues['login']);
-    }
-
-    /**
      * Charge la page administrateur.
      */
     private function chargePageAdmin()
     {
         global $rep, $vues;
-        $model = new Modele();
+        $model = new AdminModele();
         $tabSites = $model->chargerPageAdminM();
         require($rep . $vues['admin']);
     }
@@ -70,7 +64,7 @@ class AdminController
         $fluxRSS = $_REQUEST['fluxrss'];
 
         if (Validation::isValidSite($nomSite, $lienSite, $logoSite, $fluxRSS, $dVueErreur)) {
-            $model = new Modele();
+            $model = new AdminModele();
             $model->ajouterSiteM($dVueErreur, $nomSite, $lienSite, $logoSite, $fluxRSS);
             if (empty($dVueErreur))
                 header("Location: index.php?action=admin");
@@ -86,11 +80,17 @@ class AdminController
     {
         $idWebsite = $_REQUEST['idWebsite'];
         if (Validation::isValidURL($idWebsite, $dVueErreur)) {
-            $model = new Modele();
+            $model = new AdminModele();
             $model->supprimerSiteM($dVueErreur, $idWebsite);
             if (empty($dVueErreur))
                 header("Location: index.php?action=admin");
         } else
             $dVueErreur[] = "Erreur de validation";
+    }
+
+    private function deconnexion(){
+        $adminMdl = new AdminModele();
+        $adminMdl->deconnexion();
+        header("Location: index.php");
     }
 }

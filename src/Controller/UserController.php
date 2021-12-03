@@ -17,11 +17,14 @@ class UserController
                 case NULL:
                     $this->chargeParPage($dVueErreur);
                     break;
+                case 'connection':
+                    $this->connection($dVueErreur);
+                    break;
                 case 'click':
                     $this->click($dVueErreur);
                     break;
                 default:
-                    $dVueErreur[] = "Action demandée inconnue (UserController)";
+                    $dVueErreur[] = "Action demandée inconnue";
             }
         } catch (PDOException $e) {
             $dVueErreur[] = "Erreur lors de la connexion à la base de données";
@@ -61,5 +64,12 @@ class UserController
         $tabNews = $model->chargeNewsParPageM($dVueErreur, $page, $nbNewsParPage, $nbPage);
         if (empty($dVueErreur))
             require($rep . $vues['principale']);
+    }
+
+    private function connection(array &$dVueErreur){
+        $adminmdl = new AdminModele();
+        $adminmdl->connection($_REQUEST['username'],$_REQUEST['password'],$dVueErreur);
+        if (empty($dVueErreur))
+            header('Location: index.php?action=admin');
     }
 }

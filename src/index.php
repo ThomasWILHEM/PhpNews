@@ -10,6 +10,7 @@ Autoload::charger();
 //Démarrage de la session
 session_start();
 
+
 //Création du controleur
 $Controller = new FrontController();
 
