@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 03 déc. 2021 à 17:26
+-- Généré le : ven. 03 déc. 2021 à 18:40
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`login`, `hash_password`) VALUES
-('admin', '$2y$10$YZVaNjgT7SEZ0aRdNpY2V.kmSd.UPxG1hpGe602zPWSSjSHtmv/p6');
+('root', '$2y$10$YZVaNjgT7SEZ0aRdNpY2V.kmSd.UPxG1hpGe602zPWSSjSHtmv/p6');
 
 -- --------------------------------------------------------
 
