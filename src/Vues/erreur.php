@@ -34,7 +34,10 @@
     } else
         echo("<h1 class='text-center'><b>Aucune erreur</b></h1>");
 
-    echo '<a href="' . $_SERVER['PHP_SELF'] . '">Retour sur la page précédente</a>';
+    if(isset($_SESSION['previous']) && filter_var($_SESSION['previous'],FILTER_VALIDATE_URL))
+        echo '<a href="' . $_SESSION['previous'] . '">Retour sur la page précédente</a>';
+    else
+        echo '<a href="index.php">Retour sur la page principale</a>';
     ?>
 </main>
 <footer class="footer">
