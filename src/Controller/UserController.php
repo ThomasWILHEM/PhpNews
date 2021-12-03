@@ -9,7 +9,6 @@ class UserController
     function __construct()
     {
         global $rep, $vues;
-        session_start();
         $dVueErreur = array();
 
         try {

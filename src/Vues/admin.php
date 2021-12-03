@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link active" href="indexAdmin.php">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="index.php?action=admin">Admin</a></li>
             </ul>
         </div>
     </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-sm-auto">
                                 <a style="align-self: end"
-                                   href="indexAdmin.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
+                                   href="index.php?action=supprimerSite&idWebsite=<?php echo $site->getFluxRSS(); ?>">
                                     <img width="24" height="24" src="Vues/assets/img/remove.png">
                                 </a>
                             </div>

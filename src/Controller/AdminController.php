@@ -9,22 +9,14 @@ class AdminController
      */
     public function __construct()
     {
-        global $rep, $vues, $base, $user, $mdp;
-        session_start();
+        global $rep, $vues;
         $dVueErreur = array();
 
         try {
             $action = $_REQUEST['action'];
-            $con = new Connection($base, $user, $mdp);
 
             switch ($action) {
-                case null:
-                    $this->chargePageLogin();
-                    break;
-                case 'verifLogin':
-                    $this->verifLogin($dVueErreur);
-                    break;
-                case 'pageAdmin':
+                case 'admin':
                     $this->chargePageAdmin();
                     break;
                 case 'ajouterSite':
@@ -81,7 +73,7 @@ class AdminController
             $model = new Modele();
             $model->ajouterSiteM($dVueErreur, $nomSite, $lienSite, $logoSite, $fluxRSS);
             if (empty($dVueErreur))
-                header("Location: indexAdmin.php?action=pageAdmin");
+                header("Location: index.php?action=admin");
         } else
             $dVueErreur[] = "Erreur validation du site";
     }
@@ -97,26 +89,8 @@ class AdminController
             $model = new Modele();
             $model->supprimerSiteM($dVueErreur, $idWebsite);
             if (empty($dVueErreur))
-                header("Location: indexAdmin.php?action=pageAdmin");
+                header("Location: index.php?action=admin");
         } else
             $dVueErreur[] = "Erreur de validation";
-    }
-
-    /**
-     * Vérifie les informations de connexion rentrées par l'administrateur.
-     * Redirige vers la page administrateur si les informations sont correctes.
-     * @param array $dVueErreur Tableau des erreurs
-     */
-    private function verifLogin(array &$dVueErreur)
-    {
-        $login = $_POST['username'];
-        $mdp = $_POST['password'];
-        if (!Validation::isValidLogin($login, $mdp, $dVueErreur))
-            $dVueErreur[] = "Les informations ne sont pas valides";
-        else
-            if ($login == 'root' && $mdp == 'mdp')
-                header('Location: indexAdmin.php?action=pageAdmin');
-            else
-                $dVueErreur[] = "Mot de passe ou login incorrects";
     }
 }

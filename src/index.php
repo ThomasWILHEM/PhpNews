@@ -7,6 +7,9 @@ require_once(__DIR__ . '/Config/config.php');
 require_once(__DIR__ . '/Config/Autoload.php');
 Autoload::charger();
 
+//Démarrage de la session
+session_start();
+
 //Création du controleur
-$uController = new UserController();
+$Controller = new FrontController();
 
