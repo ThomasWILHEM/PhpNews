@@ -9,13 +9,14 @@ class FrontController
 
         $actions_admin=array('admin','ajouterSite','supprimerSite','deconnexion');
         try {
-            //verifie isAdmin avec le modèle admin
-            $admin=null;
-
+            $adminMdl = new AdminModele();
+            $admin=$adminMdl->isAdmin(); //verifie isAdmin avec le modèle admin
             $action=$_REQUEST['action'];
             if(in_array($action,$actions_admin)){
-                if($admin==null)
+                if($admin==null){
+                    var_dump($admin);
                     require ($rep.$vues['login']);
+                }
                 else
                     new AdminController();
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 03 déc. 2021 à 09:23
+-- Généré le : ven. 03 déc. 2021 à 17:26
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `dbphpnews`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `login` varchar(200) NOT NULL,
+  `hash_password` varchar(255) NOT NULL,
+  PRIMARY KEY (`login`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`login`, `hash_password`) VALUES
+('admin', '$2y$10$YZVaNjgT7SEZ0aRdNpY2V.kmSd.UPxG1hpGe602zPWSSjSHtmv/p6');
 
 -- --------------------------------------------------------
 
@@ -54,6 +74,32 @@ INSERT INTO `news` (`titre`, `description`, `lien`, `date`, `idSite`) VALUES
 ('Jeux-Vidéo.com', 'Boulanger : Voici les 31 ultimes offres à saisir jusqu\'à lundi 29 novembre !', 'https://www.jeuxvideo.com/news/1499648/boulanger-voici-les-31-ultimes-offres-a-saisir-jusqu-a-lundi-29-novembre.htm', '2021-11-28 15:56:57', 'https://www.jeuxvideo.com/'),
 ('Le Monde', '« En Afrique, la Chine contre-attaque sur l’héritage du colonialisme »', 'https://www.lemonde.fr/afrique/article/2021/11/28/en-afrique-la-chine-contre-attaque-sur-l-heritage-du-colonialisme_6103913_3212.html', '2021-11-28 16:00:27', 'https://www.lemonde.fr/planete/rss_full.xml'),
 ('Le Monde', 'Présidentielle 2022 : Xavier Bertrand joue son avenir politique à quitte ou double', 'https://www.lemonde.fr/election-presidentielle-2022/article/2021/11/28/presidentielle-2022-xavier-bertrand-joue-son-avenir-politique-a-quitte-ou-double_6103901_6059010.html', '2021-11-28 15:59:52', 'https://www.lemonde.fr/planete/rss_full.xml');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `site`
+--
+
+DROP TABLE IF EXISTS `site`;
+CREATE TABLE IF NOT EXISTS `site` (
+  `fluxrss` varchar(200) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `lien` varchar(2000) NOT NULL,
+  `logo` varchar(2000) NOT NULL,
+  PRIMARY KEY (`fluxrss`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `site`
+--
+
+INSERT INTO `site` (`fluxrss`, `nom`, `lien`, `logo`) VALUES
+('http://bfm.fr\r\n', 'BFMTV', 'https://www.bfmtv.com/', 'https://www.bfmtv.com/assets/images/BFMTV.svg'),
+('http://cnews.fr', 'CNews', 'https://www.cnews.fr/', 'https://static.cnews.fr/sites/all/themes/directmatinv4/cnews-logo.png'),
+('https://www.gamekult.com/', 'Gamekult', 'https://www.gamekult.com/', 'https://d3isma7snj3lcx.cloudfront.net/assets/front/img/base/logo/gk-ball-192x192.png'),
+('https://www.jeuxvideo.com/', 'Jeux-Video.com', 'https://www.jeuxvideo.com/', 'https://www.jeuxvideo.com/favicon.png'),
+('https://www.lemonde.fr/planete/rss_full.xml', 'Le Monde', 'https://www.lemonde.fr/', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Le_Monde.svg/317px-Le_Monde.svg.png');
 
 --
 -- Contraintes pour les tables déchargées

@@ -21,7 +21,7 @@ class UserController
                     $this->click($dVueErreur);
                     break;
                 default:
-                    $dVueErreur[] = "Action demandée inconnue";
+                    $dVueErreur[] = "Action demandée inconnue (UserController)";
             }
         } catch (PDOException $e) {
             $dVueErreur[] = "Erreur lors de la connexion à la base de données";

@@ -26,7 +26,7 @@ class AdminController
                     $this->supprimerSite($dVueErreur);
                     break;
                 default:
-                    $dVueErreur[] = "Erreur - Action inconnue";
+                    $dVueErreur[] = "Erreur - Action inconnue (AdminController)";
             }
         } catch (PDOException $PDOException) {
             $dVueErreur[] = "Erreur innatendu (PDO)";
