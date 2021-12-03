@@ -27,6 +27,7 @@ body {
     background-color: #ededed;
     border: 1px solid black;
     border-radius: 10px;
+    margin-top: 0.6rem;
 }
 
 .site-item {
