@@ -8,9 +8,9 @@ class Modele
         $tabNews = [[]];
         $ng = new NewsGateway(new Connection($base, $user, $mdp));
         $nbNewsTotal = $ng->getNbNews();
-        if($nbNewsTotal==0)
+        if ($nbNewsTotal == 0)
             return [];
-        if($nbNewsParPage==0) {
+        if ($nbNewsParPage == 0) {
             $dVueErreur[] = "Problème avec le nombre de news à afficher par page (0)";
             return [];
         }
@@ -25,6 +25,4 @@ class Modele
             $tabNews[1][$i] = $sg->findSite($tabNews[0][$i]->getIdSite());
         return $tabNews;
     }
-
-
 }

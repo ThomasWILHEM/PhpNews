@@ -25,6 +25,9 @@ class AdminController
                 case 'supprimerSite':
                     $this->supprimerSite($dVueErreur);
                     break;
+                case 'modifierNbNews':
+                    $this->modifierNbNews($dVueErreur);
+                    break;
                 case 'deconnexion':
                     $this->deconnexion();
                     break;
@@ -47,6 +50,7 @@ class AdminController
     {
         global $rep, $vues;
         $model = new AdminModele();
+        //récuperer le nombre de news par page
         $tabSites = $model->chargerPageAdminM();
         require($rep . $vues['admin']);
     }
@@ -92,5 +96,22 @@ class AdminController
         $adminMdl = new AdminModele();
         $adminMdl->deconnexion();
         header("Location: index.php");
+    }
+
+    private function modifierNbNews(array &$dVueErreur)
+    {
+        $nb=$_REQUEST['newsnumber'];
+        if(!Validation::isValidInt($nb,$dVueErreur)){
+            $dVueErreur[]="Erreur de validation de l'entier";
+            return;
+        }
+        if($nb < 1){
+            $dVueErreur[]="Le nombre de news par page doit être supérieur à 0";
+            return;
+        }
+        $adminml=new AdminModele();
+        $adminml->modifierNbNewsM($nb,$dVueErreur);
+        if (empty($dVueErreur))
+            header("Location: index.php?action=admin");
     }
 }

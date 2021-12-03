@@ -65,6 +65,20 @@ class Validation
         return true;
     }
 
+    public static function isValidInt($int, array &$vueErreur): bool
+    {
+        if ($int != filter_var($int, FILTER_SANITIZE_NUMBER_INT)) {
+            $vueErreur[] = "Tentative d'injection de code";
+            return false;
+        }
+        if($int != 0 && !filter_var($int,FILTER_VALIDATE_INT))
+        {
+            $vueErreur[]="L'entier est invalide";
+            return false;
+        }
+        return true;
+    }
+
     public static function isValidURL(string $URL, array &$vueErreur): bool
     {
         if (empty($URL)) {

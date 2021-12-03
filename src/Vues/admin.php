@@ -32,10 +32,12 @@
     <h2 class="adminTitle">Page admin</h2>
     <div class="m20-0">
         <h4 class="text-decoration-underline">Nombre de news</h4>
-        <div>
+        <form method="post">
             <label for="newsnumber">Nombre de news à afficher par page :</label>
-            <input id="newsnumber" type="number" min="1" max="30" value="10" required>
-        </div>
+            <input id="newsnumber" name="newsnumber" type="number" min="1" value="10" required>
+            <input type="submit" value="Enregistrer">
+            <input type="hidden" name="action" value="modifierNbNews">
+        </form>
     </div>
 
     <div class="m20-0">

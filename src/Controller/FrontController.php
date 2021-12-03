@@ -7,7 +7,7 @@ class FrontController
         global $rep,$vues;
         $dVueErreur=array();
 
-        $actions_admin=array('admin','ajouterSite','supprimerSite','deconnexion');
+        $actions_admin=array('admin','ajouterSite','supprimerSite','modifierNbNews','deconnexion');
         try {
             $adminMdl = new AdminModele();
             $admin=$adminMdl->isAdmin($dVueErreur); //verifie isAdmin avec le modèle admin
