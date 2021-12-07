@@ -24,7 +24,7 @@ class FrontController
         } catch (PDOException $PDOException) {
             $dVueErreur[] = "Erreur innatendu (PDO)";
         } catch (Exception $exception) {
-            $dVueErreur[] = "Erreur innatendu";
+            $dVueErreur[] = $exception->getMessage();
         }
 
         if(!empty($dVueErreur))
