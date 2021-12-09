@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "Admin - PhpNews";
 $cssFile = "admin.css";
+$active = "admin";
 require("header.php");
 ?>
 

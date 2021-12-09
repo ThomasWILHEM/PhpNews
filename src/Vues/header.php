@@ -22,8 +22,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?action=admin">Admin</a></li>
+                <li class="nav-item"><a
+                            class="nav-link <?php if (isset($active) && $active === "accueil") echo "active" ?>"
+                            href="index.php">Accueil</a></li>
+                <li class="nav-item"><a
+                            class="nav-link <?php if (isset($active) && $active === "admin") echo "active" ?>"
+                            href="index.php?action=admin">Admin</a></li>
                 <?php if (isset($_SESSION['login'])) echo '<li><a class="nav-link btn btn-primary text-white" href="index.php?action=deconnexion">Déconnexion</a>' ?>
                 </li>
             </ul>
