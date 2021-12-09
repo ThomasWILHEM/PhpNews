@@ -1,0 +1,26 @@
+@media screen and (min-width: 720px) {
+    .main {
+        margin: 40px 5% auto 5%;
+    }
+}
+
+.news-td {
+    height: 60px;
+    vertical-align: middle;
+}
+
+.news-img {
+    max-height: 50px;
+    max-width: 100px;
+    border-radius: 10%;
+}
+
+.news-link {
+    text-decoration: none;
+    color: #212529;
+}
+
+.news-link:hover {
+    text-decoration: underline;
+    color: orange;
+}

@@ -8,5 +8,5 @@ $mdp = "mdp";
 
 $vues['erreur'] = "Vues/erreur.php";
 $vues['principale'] = "Vues/pagePrincipale.php";
-$vues['login'] = "Vues/login.html";
+$vues['login'] = "Vues/login.php";
 $vues['admin'] = "Vues/admin.php";

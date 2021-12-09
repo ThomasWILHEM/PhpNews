@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-<html>
+<?php
+$pageTitle = "Accueil - PhpNews";
+$cssFile = "news.css";
+require("header.php")
+?>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Accueil - PhpNews</title>
-    <link rel="stylesheet" href="Vues/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="Vues/assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" href="Vues/assets/css/index.css">
-</head>
-
-<body>
-<nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar navShadow">
-    <div class="container">
-        <a class="navbar-brand logo" href="">PhpNews</a>
-        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?action=admin">Admin</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <main class="main">
     <h2>Liste des news</h2>
     <?php

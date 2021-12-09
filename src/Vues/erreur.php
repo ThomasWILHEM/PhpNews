@@ -1,30 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Connexion - PhpNews</title>
-    <link rel="stylesheet" href="Vues/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="Vues/assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" href="Vues/assets/css/login.css">
-</head>
+<?php
+$pageTitle = "Erreur - PhpNews";
+//    $cssFile="";
+require("header.php");
+?>
 
-<body>
-<nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar navShadow">
-    <div class="container"><a class="navbar-brand logo" href="index.php">PhpNews</a>
-        <button data-bs-toggle="collapse"
-                class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
-                        navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?action=admin">Admin</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <main class="main">
     <?php
     if (!empty($dVueErreur)) {
@@ -34,7 +13,7 @@
     } else
         echo("<h1 class='text-center'><b>Aucune erreur</b></h1>");
 
-    if(isset($_SESSION['previous']) && filter_var($_SESSION['previous'],FILTER_VALIDATE_URL))
+    if (isset($_SESSION['previous']) && filter_var($_SESSION['previous'], FILTER_VALIDATE_URL))
         echo '<a href="' . $_SESSION['previous'] . '">Retour sur la page précédente</a>';
     else
         echo '<a href="index.php">Retour sur la page principale</a>';
