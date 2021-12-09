@@ -12,6 +12,12 @@ class AdminController
         global $rep, $vues;
         $dVueErreur = array();
 
+        $adminMdl = new AdminModele();
+        $admin=$adminMdl->isAdmin($dVueErreur);
+        if($admin==null){
+            throw new Exception("Appel au controleur sans être admin");
+        }
+
         try {
             $action = $_REQUEST['action'];
 
