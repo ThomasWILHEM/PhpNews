@@ -60,8 +60,8 @@ class UserController
         $nbPage = 0;
         $model = new Modele();
         $page = $_REQUEST['page'] ?? 1;
-        //récuperer le nombre de news par page
-        $nbNewsParPage = 5; //A set plus tard dans la base
+        $adminModel=new AdminModele();
+        $nbNewsParPage = $adminModel->getNbNewsParPage();
         $tabNews = $model->chargeNewsParPageM($dVueErreur, $page, $nbNewsParPage, $nbPage);
         if (empty($dVueErreur))
             require($rep . $vues['principale']);

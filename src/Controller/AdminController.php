@@ -56,7 +56,7 @@ class AdminController
     {
         global $rep, $vues;
         $model = new AdminModele();
-        //récuperer le nombre de news par page
+        $nbNewsParPage=$model->getNbNewsParPage();
         $tabSites = $model->chargerPageAdminM();
         require($rep . $vues['admin']);
     }

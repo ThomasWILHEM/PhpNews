@@ -65,6 +65,16 @@ class AdminModele
 
     public function modifierNbNewsM(int $nb, array &$dVueErreur)
     {
-        //implémenter la méthode qui change la valeur dans la bd
+        global $base, $user, $mdp;
+        $ag = new AdminGateway(new Connection($base, $user, $mdp));
+        if (!$ag->modifierNbNewsParPage($nb))
+            $dVueErreur[] = "La modification du nombre de news par page a échouée";
+    }
+
+    public function getNbNewsParPage(): int
+    {
+        global $base, $user, $mdp;
+        $ag = new AdminGateway(new Connection($base, $user, $mdp));
+        return $ag->getNbNewsParPage();
     }
 }

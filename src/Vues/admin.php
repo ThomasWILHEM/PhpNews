@@ -14,7 +14,8 @@ require("header.php");
                 <label for="newsnumber">Nombre de news à afficher par page :</label>
             </div>
             <div class="col-auto hstack gap-3">
-                <input class="form-control" id="newsnumber" name="newsnumber" type="number" min="1" value="10" required>
+                <input class="form-control" id="newsnumber" name="newsnumber" type="number" min="1"
+                       value="<?php if (isset($nbNewsParPage)) echo $nbNewsParPage; ?>" required>
                 <input class="btn btn-primary" type="submit" value="Enregistrer">
             </div>
             <input type="hidden" name="action" value="modifierNbNews">
