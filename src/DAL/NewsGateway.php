@@ -88,4 +88,11 @@ class NewsGateway
         return $tab[0][0];
     }
 
+    public function getLastDate(string $idSite)
+    {
+        $query = "SELECT date FROM news WHERE idSite=:idSite ORDER BY  date DESC LIMIT 1";
+        $this->con->executeQuery($query, array(':idSite' => array($idSite, PDO::PARAM_STR)));
+        $results = $this->con->getResults();
+        return $results[0]['date'];
+    }
 }

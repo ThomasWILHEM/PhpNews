@@ -5,6 +5,7 @@ $rep = __DIR__ . '/../';
 $base = "mysql:host=localhost;dbname=dbphpnews";
 $user = "admin";
 $mdp = "mdp";
+$logFile="log.txt";
 
 $vues['erreur'] = "Vues/erreur.php";
 $vues['principale'] = "Vues/pagePrincipale.php";
