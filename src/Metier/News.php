@@ -20,27 +20,11 @@ class News
      */
     public function __construct(string $titre, string $description, string $lien, string $date, string $idSite)
     {
-        $this->titre = $titre;
-        $this->description = $description;
-        $this->lien = $lien;
-        $this->date = $date;
-        $this->idSite = $idSite;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdSite(): string
-    {
-        return $this->idSite;
-    }
-
-    /**
-     * @param string $idSite
-     */
-    public function setIdSite(string $idSite): void
-    {
-        $this->idSite = $idSite;
+        $this->setTitre($titre);
+        $this->setDescription($description);
+        $this->setLien($lien);
+        $this->setDate($date);
+        $this->setIdSite($idSite);
     }
 
     /**
@@ -107,5 +91,24 @@ class News
         $this->date = $date;
     }
 
+    /**
+     * @return string
+     */
+    public function getIdSite(): string
+    {
+        return $this->idSite;
+    }
 
+    /**
+     * @param string $idSite
+     */
+    public function setIdSite(string $idSite): void
+    {
+        $this->idSite = $idSite;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getTitre() . " (" . $this->getDate() . ") (" . $this->getLien() . ")";
+    }
 }
