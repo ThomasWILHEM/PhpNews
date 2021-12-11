@@ -25,12 +25,13 @@ require("header.php")
                         <td class="news-td"><?php echo $tabNews[0][$i]->getDate() ?></td>
                         <td class="news-td">
                             <a class="news-link"
-                               href="index.php?action=click&redirectWebsite=<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                               href="index.php?action=click&redirectWebsite=<?php echo $tabNews[0][$i]->getLien() ?>"
+                               target="_blank">
                                 <span><?php echo $tabNews[0][$i]->getTitre() ?></span>
                             </a>
                         </td>
                         <td class="news-td">
-                            <a class="news-link" href="<?php echo $tabNews[1][$i]->getLienSite() ?>">
+                            <a class="news-link" href="<?php echo $tabNews[1][$i]->getLien() ?>" target="_blank">
                                 <img src="<?php echo $tabNews[1][$i]->getLogo() ?>" class="news-img" alt="Logo du site">
                                 <?php echo $tabNews[1][$i]->getNom() ?>
                             </a>

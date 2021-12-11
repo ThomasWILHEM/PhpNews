@@ -73,7 +73,7 @@ require("header.php");
                     <li class="site-item">
                         <div class="row m-0">
                             <div class="col">
-                                <a class="btn" href="<?php echo $site->getLienSite(); ?>">
+                                <a class="btn" href="<?php echo $site->getLien(); ?>">
                                     <img height="20px" src="<?php echo $site->getLogo(); ?>">
                                     <span class="ml"><?php echo $site->getNom(); ?></span>
                                 </a>
