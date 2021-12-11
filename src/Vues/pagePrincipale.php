@@ -7,6 +7,7 @@ require("header.php")
 
 <main class="main">
     <h2>Liste des news</h2>
+    <a class="btn btn-primary m-2" href="index.php?action=refreshNews">Actualiser</a>
     <?php
     if (!empty($tabNews)) {
         ?>

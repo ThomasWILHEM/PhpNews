@@ -23,13 +23,17 @@ class UserController
                 case 'click':
                     $this->click($dVueErreur);
                     break;
+                case 'refreshNews':
+                    $this->refreshNews();
+                    break;
                 default:
                     $dVueErreur[] = "Action demandée inconnue";
             }
-        } catch (PDOException $e) {
+        } catch (PDOException $PDOException) {
             $dVueErreur[] = "Erreur lors de la connexion à la base de données";
-        } catch (Exception $e2) {
+        } catch (Exception $exception) {
             $dVueErreur[] = "Erreur inattendue!!!";
+            $dVueErreur[] = $exception->getMessage();
         }
         if (!empty($dVueErreur))
             require($rep . $vues['erreur']);
@@ -72,5 +76,10 @@ class UserController
         $adminmdl->connection($_REQUEST['username'],$_REQUEST['password'],$dVueErreur);
         if (empty($dVueErreur))
             header('Location: index.php?action=admin');
+    }
+
+    private function refreshNews(){
+        require ('Parser/script.php');
+        header('Location: index.php');
     }
 }

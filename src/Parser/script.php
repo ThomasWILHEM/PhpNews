@@ -1,11 +1,4 @@
 <?php
-ini_set('display_errors', 'Off');
-require_once(__DIR__ . '/../Config/config.php');
-
-require_once(__DIR__ . '/../Config/Autoload.php');
-Autoload::charger();
-
-echo '<a href="../index.php">Accueil</a></br>';
 
 global $base, $user, $mdp, $logFile;
 

@@ -28,7 +28,6 @@
                 <li class="nav-item"><a
                             class="nav-link <?php if (isset($active) && $active === "admin") echo "active" ?>"
                             href="index.php?action=admin">Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="Parser/script.php">Parser</a></li>
                 <?php if (isset($_SESSION['login'])) echo '<li><a class="nav-link btn btn-primary text-white" href="index.php?action=deconnexion">Déconnexion</a>' ?>
                 </li>
             </ul>

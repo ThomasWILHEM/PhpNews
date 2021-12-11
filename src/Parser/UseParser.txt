@@ -6,4 +6,4 @@ to refresh the rss stream every 10 minutes:
 10 * * * * [user] php <path/to/script>
 
 to refresh the rss stream every hour:
-* 1 * * * [user] php <path/to/script>
+* 1 * * * [user] php <path/to/autoscript.php>
