@@ -3,22 +3,22 @@
 class Site
 {
     private string $nom;
-    private string $lienSite;
+    private string $lien;
     private string $logo;
     private string $fluxRSS;
 
     /**
      * @param string $nom
-     * @param string $lienSite
+     * @param string $lien
      * @param string $logo
      * @param string $fluxRSS
      */
-    public function __construct(string $nom, string $lienSite, string $logo, string $fluxRSS)
+    public function __construct(string $nom, string $lien, string $logo, string $fluxRSS)
     {
-        $this->nom = $nom;
-        $this->lienSite = $lienSite;
-        $this->logo = $logo;
-        $this->fluxRSS = $fluxRSS;
+        $this->setNom($nom);
+        $this->setLien($lien);
+        $this->setLogo($logo);
+        $this->setFluxRSS($fluxRSS);
     }
 
     /**
@@ -40,17 +40,17 @@ class Site
     /**
      * @return string
      */
-    public function getLienSite(): string
+    public function getLien(): string
     {
-        return $this->lienSite;
+        return $this->lien;
     }
 
     /**
-     * @param string $lienSite
+     * @param string $lien
      */
-    public function setLienSite(string $lienSite): void
+    public function setLien(string $lien): void
     {
-        $this->lienSite = $lienSite;
+        $this->lien = $lien;
     }
 
     /**
@@ -85,21 +85,8 @@ class Site
         $this->fluxRSS = $fluxRSS;
     }
 
-    /**
-     * @return array
-     */
-    public function getNews(): array
+    public function __toString(): string
     {
-        return $this->news;
+        return $this->getNom()." (lien: ".$this->getLien().") (flux: ".$this->getFluxRSS().")";
     }
-
-    /**
-     * @param array $news
-     */
-    public function setNews(array $news): void
-    {
-        $this->news = $news;
-    }
-
-
 }

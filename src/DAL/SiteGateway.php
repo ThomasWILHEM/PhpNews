@@ -14,11 +14,11 @@ class SiteGateway
 
     public function insert(Site $s)
     {
-        $query = 'INSERT INTO site VALUES(:fluxRSS,:nom,:lienSite,:logo)';
+        $query = 'INSERT INTO site VALUES(:fluxRSS,:nom,:lien,:logo)';
 
         $this->con->executeQuery($query, array(
             ':nom' => array($s->getNom(), PDO::PARAM_STR),
-            ':lienSite' => array($s->getLienSite(), PDO::PARAM_STR),
+            ':lien' => array($s->getLien(), PDO::PARAM_STR),
             ':logo' => array($s->getLogo(), PDO::PARAM_STR),
             ':fluxRSS' => array($s->getFluxRSS(), PDO::PARAM_STR),
         ));
