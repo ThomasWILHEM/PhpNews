@@ -64,22 +64,25 @@ class UserController
         $nbPage = 0;
         $model = new Modele();
         $page = $_REQUEST['page'] ?? 1;
-        $adminModel=new AdminModele();
+        $adminModel = new AdminModele();
         $nbNewsParPage = $adminModel->getNbNewsParPage();
         $tabNews = $model->chargeNewsParPageM($dVueErreur, $page, $nbNewsParPage, $nbPage);
         if (empty($dVueErreur))
             require($rep . $vues['principale']);
     }
 
-    private function connection(array &$dVueErreur){
+    private function connection(array &$dVueErreur)
+    {
         $adminmdl = new AdminModele();
-        $adminmdl->connection($_REQUEST['username'],$_REQUEST['password'],$dVueErreur);
+        if (isset($_REQUEST['username']) && isset($_REQUEST['password']))
+            $adminmdl->connection($_REQUEST['username'], $_REQUEST['password'], $dVueErreur);
         if (empty($dVueErreur))
             header('Location: index.php?action=admin');
     }
 
-    private function refreshNews(){
-        require ('Parser/script.php');
+    private function refreshNews()
+    {
+        require('Parser/script.php');
         header('Location: index.php');
     }
 }

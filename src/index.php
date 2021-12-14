@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors','Off');
+//ini_set('display_errors','Off');
 
 //Chargement de la configuration
 require_once(__DIR__ . '/Config/config.php');
