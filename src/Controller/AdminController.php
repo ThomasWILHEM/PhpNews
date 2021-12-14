@@ -73,13 +73,16 @@ class AdminController
         $logoSite = $_REQUEST['logosite'];
         $fluxRSS = $_REQUEST['fluxrss'];
 
-        if (Validation::isValidSite($nomSite, $lienSite, $logoSite, $fluxRSS, $dVueErreur)) {
-            $model = new AdminModele();
-            $model->ajouterSiteM($dVueErreur, $nomSite, $lienSite, $logoSite, $fluxRSS);
-            if (empty($dVueErreur))
-                header("Location: index.php?action=admin");
-        } else
-            $dVueErreur[] = "Erreur validation du site";
+        if(isset($nomSite) && isset($lienSite) && isset($logoSite) && isset($fluxRSS)){
+            if (Validation::isValidSite($nomSite, $lienSite, $logoSite, $fluxRSS, $dVueErreur)) {
+                $model = new AdminModele();
+                $model->ajouterSiteM($dVueErreur, $nomSite, $lienSite, $logoSite, $fluxRSS);
+                if (empty($dVueErreur))
+                    header("Location: index.php?action=admin");
+            } else
+                $dVueErreur[] = "Erreur validation du site";
+        }else
+            $dVueErreur[]="Tentative d'ajout d'un site sans les informations requises";
     }
 
     /**
@@ -89,13 +92,16 @@ class AdminController
     private function supprimerSite(array &$dVueErreur)
     {
         $idWebsite = $_REQUEST['idWebsite'];
-        if (Validation::isValidURL($idWebsite, $dVueErreur)) {
-            $model = new AdminModele();
-            $model->supprimerSiteM($dVueErreur, $idWebsite);
-            if (empty($dVueErreur))
-                header("Location: index.php?action=admin");
-        } else
-            $dVueErreur[] = "Erreur de validation";
+        if(isset($idWebsite)){
+            if (Validation::isValidURL($idWebsite, $dVueErreur)) {
+                $model = new AdminModele();
+                $model->supprimerSiteM($dVueErreur, $idWebsite);
+                if (empty($dVueErreur))
+                    header("Location: index.php?action=admin");
+            } else
+                $dVueErreur[] = "Erreur de validation";
+        }else
+            $dVueErreur[] = "Tentative de suppression d'un site sans les informations requises";
     }
 
     private function deconnexion(){
