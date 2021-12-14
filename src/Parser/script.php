@@ -43,5 +43,10 @@ foreach ($sites as $site) {
     }
 }
 
+$nbNewsMax=400;
+$nbToRemove=$ng->getNbNews()-$nbNewsMax;
+if($nbToRemove > 0)
+    $ng->deleteNOldestNews($nbToRemove);
+
 //Fermeture du fichier de log
 fclose($logStream);

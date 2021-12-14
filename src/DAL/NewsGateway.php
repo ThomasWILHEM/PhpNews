@@ -29,6 +29,14 @@ class NewsGateway
         ));
     }
 
+    public function deleteNOldestNews(int $nb)
+    {
+        $query = 'DELETE FROM news ORDER BY date LIMIT :nb';
+        $this->con->executeQuery($query, array(
+            ':nb' => array($nb, PDO::PARAM_INT)
+        ));
+    }
+
     public function updateTitre(string $lien, string $newTitre)
     {
         $query = 'UPDATE news SET titre=:newTitre WHERE lien=:lien';

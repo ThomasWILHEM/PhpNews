@@ -1,11 +1,12 @@
 <?php
 
 $rep = __DIR__ . '/../';
+$logFile="log.txt";
 
+//A changer selon la base!!!
 $base = "mysql:host=localhost;dbname=dbphpnews";
 $user = "admin";
 $mdp = "mdp";
-$logFile="log.txt";
 
 $vues['erreur'] = "Vues/erreur.php";
 $vues['principale'] = "Vues/pagePrincipale.php";
