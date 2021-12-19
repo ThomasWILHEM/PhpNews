@@ -26,7 +26,8 @@ foreach ($sites as $site) {
 
         foreach ($rss->channel->item as $news) {
             $titre = substr($news->title, 0, 100);
-            $description = substr($news->title, 0, 500);
+            $description = substr($news->description, 0, 500);
+            $description = filter_var($description, FILTER_SANITIZE_STRING);
             $date = date('Y-m-d H:i:s', strtotime($news->pubDate));
 
             if ($date <= $last_date)
