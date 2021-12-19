@@ -1,9 +1,9 @@
 How to use the parser periodically?
 
-Edit the file /etc/crontab and the following line:
+crontab -e
 
 to refresh the rss stream every 10 minutes:
-10 * * * * [user] php <path/to/autoscript.php>
+*/10 * * * * [user] php <path/to/autoscript.php>
 
 to refresh the rss stream every hour:
 * 1 * * * [user] php <path/to/autoscript.php>
