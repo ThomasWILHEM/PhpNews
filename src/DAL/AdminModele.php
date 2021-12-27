@@ -7,7 +7,8 @@ class AdminModele
         global $base, $user, $mdp;
         if (Validation::isValidString($login, $dVueErreur) && Validation::isValidString($password, $dVueErreur)) {
             $ga = new AdminGateway(new Connection($base, $user, $mdp));
-            if ($ga->verifAdmin($login, $password)) {
+            $hash = $ga->getHash($login);
+            if (password_verify($password, $hash)) {
                 $_SESSION['role'] = 'admin';
                 $_SESSION['login'] = $login;
             } else

@@ -12,18 +12,13 @@ class AdminGateway
         $this->con = $con;
     }
 
-    public function verifAdmin(string $login, string $password): bool
+    public function getHash(string $login): string
     {
         $query = 'SELECT * FROM admin WHERE login=:login';
         $this->con->executeQuery($query, array(
             ':login' => array($login, PDO::PARAM_STR)
         ));
-        $results = $this->con->getResults();
-
-        if (count($results) != 1) {
-            return false;
-        }
-        return password_verify($password, $results[0]['hash_password']);
+        return $this->con->getResults()[0]['hash_password'];
     }
 
     public function getNbNewsParPage(): int
