@@ -3,9 +3,9 @@
 class Validation
 {
 
-    public static function isValidSite(string $nom, string $lienSite, string $logo, string $fluxRSS, array &$vueErreur): bool
+    public static function isValidSite(?string $nom, ?string $lienSite, ?string $logo, ?string $fluxRSS, array &$vueErreur): bool
     {
-        if(!self::isValidString($nom,$vueErreur)){
+        if (!self::isValidString($nom, $vueErreur)) {
             $vueErreur[] = "Chaine de caractères manquante: nom du site";
             return false;
         }
@@ -33,7 +33,7 @@ class Validation
         return true;
     }
 
-    public static function isValidLogin($login, $mdp, &$vueErreur): bool
+    public static function isValidLogin(?string $login, ?string $mdp, array &$vueErreur): bool
     {
         if (!isset($login) || empty($login)) {
             $vueErreur[] = "Le login est manquant";
@@ -52,7 +52,7 @@ class Validation
         return true;
     }
 
-    public static function isValidString(string $string, array &$vueErreur): bool
+    public static function isValidString(?string $string, array &$vueErreur): bool
     {
         if (empty($string)) {
             $vueErreur[] = "Le chaine de caractères est manquante ou vide";
@@ -65,21 +65,20 @@ class Validation
         return true;
     }
 
-    public static function isValidInt($int, array &$vueErreur): bool
+    public static function isValidInt(?int $int, array &$vueErreur): bool
     {
         if ($int != filter_var($int, FILTER_SANITIZE_NUMBER_INT)) {
             $vueErreur[] = "Tentative d'injection de code";
             return false;
         }
-        if($int != 0 && !filter_var($int,FILTER_VALIDATE_INT))
-        {
-            $vueErreur[]="L'entier est invalide";
+        if ($int != 0 && !filter_var($int, FILTER_VALIDATE_INT)) {
+            $vueErreur[] = "L'entier est invalide";
             return false;
         }
         return true;
     }
 
-    public static function isValidURL(string $URL, array &$vueErreur): bool
+    public static function isValidURL(?string $URL, array &$vueErreur): bool
     {
         if (empty($URL)) {
             $vueErreur[] = "L'URL est manquante ou vide";
