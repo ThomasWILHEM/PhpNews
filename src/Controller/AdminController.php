@@ -13,8 +13,8 @@ class AdminController
         $dVueErreur = array();
 
         $adminMdl = new AdminModele();
-        $admin=$adminMdl->isAdmin($dVueErreur);
-        if($admin==null){
+        $admin = $adminMdl->isAdmin($dVueErreur);
+        if ($admin == null) {
             throw new Exception("Appel au controleur sans être admin");
         }
 
@@ -47,6 +47,8 @@ class AdminController
         }
         if (!empty($dVueErreur))
             require($rep . $vues['erreur']);
+
+        exit(0);
     }
 
     /**
@@ -56,7 +58,7 @@ class AdminController
     {
         global $rep, $vues;
         $model = new AdminModele();
-        $nbNewsParPage=$model->getNbNewsParPage();
+        $nbNewsParPage = $model->getNbNewsParPage();
         $tabSites = $model->chargerPageAdminM();
         require($rep . $vues['admin']);
     }
@@ -73,16 +75,18 @@ class AdminController
         $logoSite = $_REQUEST['logosite'];
         $fluxRSS = $_REQUEST['fluxrss'];
 
-        if(isset($nomSite) && isset($lienSite) && isset($logoSite) && isset($fluxRSS)){
+        if (isset($nomSite) && isset($lienSite) && isset($logoSite) && isset($fluxRSS)) {
             if (Validation::isValidSite($nomSite, $lienSite, $logoSite, $fluxRSS, $dVueErreur)) {
                 $model = new AdminModele();
                 $model->ajouterSiteM($dVueErreur, $nomSite, $lienSite, $logoSite, $fluxRSS);
-                if (empty($dVueErreur))
-                    header("Location: index.php?action=admin");
+                if (empty($dVueErreur)) {
+                    $_REQUEST['action'] = 'admin';
+                    new FrontController();
+                }
             } else
                 $dVueErreur[] = "Erreur validation du site";
-        }else
-            $dVueErreur[]="Tentative d'ajout d'un site sans les informations requises";
+        } else
+            $dVueErreur[] = "Tentative d'ajout d'un site sans les informations requises";
     }
 
     /**
@@ -92,38 +96,44 @@ class AdminController
     private function supprimerSite(array &$dVueErreur)
     {
         $idWebsite = $_REQUEST['idWebsite'];
-        if(isset($idWebsite)){
+        if (isset($idWebsite)) {
             if (Validation::isValidURL($idWebsite, $dVueErreur)) {
                 $model = new AdminModele();
                 $model->supprimerSiteM($dVueErreur, $idWebsite);
-                if (empty($dVueErreur))
-                    header("Location: index.php?action=admin");
+                if (empty($dVueErreur)) {
+                    $_REQUEST['action'] = 'admin';
+                    new FrontController();
+                }
             } else
                 $dVueErreur[] = "Erreur de validation";
-        }else
+        } else
             $dVueErreur[] = "Tentative de suppression d'un site sans les informations requises";
     }
 
-    private function deconnexion(){
+    private function deconnexion()
+    {
         $adminMdl = new AdminModele();
         $adminMdl->deconnexion();
-        header("Location: index.php");
+        unset($_REQUEST['action']);
+        new FrontController();
     }
 
     private function modifierNbNews(array &$dVueErreur)
     {
-        $nb=$_REQUEST['newsnumber'];
-        if(!Validation::isValidInt($nb,$dVueErreur)){
-            $dVueErreur[]="Erreur de validation de l'entier";
+        $nb = $_REQUEST['newsnumber'];
+        if (!Validation::isValidInt($nb, $dVueErreur)) {
+            $dVueErreur[] = "Erreur de validation de l'entier";
             return;
         }
-        if($nb < 1){
-            $dVueErreur[]="Le nombre de news par page doit être supérieur à 0";
+        if ($nb < 1) {
+            $dVueErreur[] = "Le nombre de news par page doit être supérieur à 0";
             return;
         }
-        $adminml=new AdminModele();
-        $adminml->modifierNbNewsM($nb,$dVueErreur);
-        if (empty($dVueErreur))
-            header("Location: index.php?action=admin");
+        $adminml = new AdminModele();
+        $adminml->modifierNbNewsM($nb, $dVueErreur);
+        if (empty($dVueErreur)) {
+            $_REQUEST['action'] = 'admin';
+            new FrontController();
+        }
     }
 }

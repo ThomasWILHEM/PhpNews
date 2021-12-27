@@ -37,6 +37,7 @@ class UserController
         }
         if (!empty($dVueErreur))
             require($rep . $vues['erreur']);
+
         exit(0);
     }
 
@@ -76,13 +77,16 @@ class UserController
         $adminmdl = new AdminModele();
         if (isset($_REQUEST['username']) && isset($_REQUEST['password']))
             $adminmdl->connection($_REQUEST['username'], $_REQUEST['password'], $dVueErreur);
-        if (empty($dVueErreur))
-            header('Location: index.php?action=admin');
+        if (empty($dVueErreur)) {
+            $_REQUEST['action'] = 'admin';
+            new FrontController();
+        }
     }
 
     private function refreshNews()
     {
         require('Parser/script.php');
-        header('Location: index.php');
+        unset($_REQUEST['action']);
+        new FrontController();
     }
 }
