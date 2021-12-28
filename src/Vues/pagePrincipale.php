@@ -37,7 +37,7 @@ require("header.php")
                                 <?php echo $tabNews[1][$i]->getNom() ?>
                             </a>
                         </td>
-                        <td class="news-td"><?php echo $tabNews[0][$i]->getDescription() ?></td>
+                        <td class="news-td"><?php if (!empty($tabNews[0][$i]->getDescription())) echo $tabNews[0][$i]->getDescription(); else echo "Pas de description"; ?></td>
                     </tr>
                     <?php
                 }
