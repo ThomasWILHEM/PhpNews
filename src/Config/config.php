@@ -4,7 +4,7 @@ $rep = __DIR__ . '/../';
 $logFile="log.txt";
 
 //A changer selon la base!!!
-$base = "mysql:host=localhost;dbname=dbphpnews";
+$base = "mysql:host=localhost;dbname=dbphpnews;charset=utf8";
 $user = "admin";
 $mdp = "mdp";
 
