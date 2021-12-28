@@ -64,18 +64,33 @@ class AdminModele
             $dVueErreur[] = "Impossible de supprimer " . $idWebsite;
     }
 
-    public function modifierNbNewsM(int $nb, array &$dVueErreur)
+    public function modifierNbNewsVueM(int $nb, array &$dVueErreur)
     {
         global $base, $user, $mdp;
         $ag = new AdminGateway(new Connection($base, $user, $mdp));
-        if (!$ag->modifierNbNewsParPage($nb))
+        if (!$ag->setNbNewsParPage($nb))
             $dVueErreur[] = "La modification du nombre de news par page a échouée";
     }
 
-    public function getNbNewsParPage(): int
+    public function modifierNbNewsBDM($nb, array &$dVueErreur)
+    {
+        global $base, $user, $mdp;
+        $ag = new AdminGateway(new Connection($base, $user, $mdp));
+        if (!$ag->setNbNewsEnBD($nb))
+            $dVueErreur[] = "La modification du nombre de news par page a échouée";
+    }
+
+    public function getNbNewsParPageM(): int
     {
         global $base, $user, $mdp;
         $ag = new AdminGateway(new Connection($base, $user, $mdp));
         return $ag->getNbNewsParPage();
+    }
+
+    public function getNbNewsEnBDM(): int
+    {
+        global $base, $user, $mdp;
+        $ag = new AdminGateway(new Connection($base, $user, $mdp));
+        return $ag->getNbNewsEnBD();
     }
 }

@@ -31,8 +31,11 @@ class AdminController
                 case 'supprimerSite':
                     $this->supprimerSite($dVueErreur);
                     break;
-                case 'modifierNbNews':
-                    $this->modifierNbNews($dVueErreur);
+                case 'modifierNbNewsVue':
+                    $this->modifierNbNewsVue($dVueErreur);
+                    break;
+                case 'modifierNbNewsEnBD':
+                    $this->modifierNbNewsEnBD($dVueErreur);
                     break;
                 case 'deconnexion':
                     $this->deconnexion();
@@ -58,7 +61,8 @@ class AdminController
     {
         global $rep, $vues;
         $model = new AdminModele();
-        $nbNewsParPage = $model->getNbNewsParPage();
+        $nbNewsParPage = $model->getNbNewsParPageM();
+        $nbNewsEnBD = $model->getNbNewsEnBDM();
         $tabSites = $model->chargerPageAdminM();
         require($rep . $vues['admin']);
     }
@@ -118,9 +122,9 @@ class AdminController
         new FrontController();
     }
 
-    private function modifierNbNews(array &$dVueErreur)
+    private function modifierNbNewsVue(array &$dVueErreur)
     {
-        $nb = $_REQUEST['newsnumber'];
+        $nb = $_REQUEST['newsview'];
         if (!Validation::isValidInt($nb, $dVueErreur)) {
             $dVueErreur[] = "Erreur de validation de l'entier";
             return;
@@ -130,7 +134,26 @@ class AdminController
             return;
         }
         $adminml = new AdminModele();
-        $adminml->modifierNbNewsM($nb, $dVueErreur);
+        $adminml->modifierNbNewsVueM($nb, $dVueErreur);
+        if (empty($dVueErreur)) {
+            $_REQUEST['action'] = 'admin';
+            new FrontController();
+        }
+    }
+
+    private function modifierNbNewsEnBD(array $dVueErreur)
+    {
+        $nb = $_REQUEST['newsbd'];
+        if (!Validation::isValidInt($nb, $dVueErreur)) {
+            $dVueErreur[] = "Erreur de validation de l'entier";
+            return;
+        }
+        if ($nb < 1) {
+            $dVueErreur[] = "Le nombre de news par page doit être supérieur à 0";
+            return;
+        }
+        $adminml = new AdminModele();
+        $adminml->modifierNbNewsBDM($nb, $dVueErreur);
         if (empty($dVueErreur)) {
             $_REQUEST['action'] = 'admin';
             new FrontController();

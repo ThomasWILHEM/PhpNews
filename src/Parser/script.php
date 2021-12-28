@@ -8,6 +8,7 @@ try {
     $con = new Connection($base, $user, $mdp);
     $sg = new SiteGateway($con);
     $ng = new NewsGateway($con);
+    $ag = new AdminGateway($con);
 
     $sites = $sg->findAllSite();
 } catch (PDOException $exception) {
@@ -60,7 +61,7 @@ foreach ($sites as $site) {
     }
 }
 
-$nbNewsMax = 400;
+$nbNewsMax = $ag->getNbNewsEnBD();
 $nbToRemove = $ng->getNbNews() - $nbNewsMax;
 if ($nbToRemove > 0)
     $ng->deleteNOldestNews($nbToRemove);

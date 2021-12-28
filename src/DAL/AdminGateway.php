@@ -29,11 +29,27 @@ class AdminGateway
         return $results[0]['nbNewsParPage'] ?? 5;
     }
 
-    public function modifierNbNewsParPage(int $nb): bool
+    public function setNbNewsParPage(int $nb): bool
     {
         $query = 'UPDATE admin SET nbNewsParPage=:nbNewsParPage WHERE login=\'user\'';
         return $this->con->executeQuery($query, array(
             ':nbNewsParPage' => array($nb, PDO::PARAM_INT)
+        ));
+    }
+
+    public function getNbNewsEnBD(): int
+    {
+        $query = 'SELECT nbNewsEnBD FROM admin WHERE login=\'user\'';
+        $this->con->executeQuery($query);
+        $results = $this->con->getResults();
+        return $results[0]['nbNewsEnBD'] ?? 5;
+    }
+
+    public function setNbNewsEnBD(int $nb): bool
+    {
+        $query = 'UPDATE admin SET nbNewsEnBD=:nbNewsEnBD WHERE login=\'user\'';
+        return $this->con->executeQuery($query, array(
+            ':nbNewsEnBD' => array($nb, PDO::PARAM_INT)
         ));
     }
 }

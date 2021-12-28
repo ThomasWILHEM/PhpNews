@@ -66,7 +66,7 @@ class UserController
         $model = new Modele();
         $page = $_REQUEST['page'] ?? 1;
         $adminModel = new AdminModele();
-        $nbNewsParPage = $adminModel->getNbNewsParPage();
+        $nbNewsParPage = $adminModel->getNbNewsParPageM();
         $tabNews = $model->chargeNewsParPageM($dVueErreur, $page, $nbNewsParPage, $nbPage);
         if (empty($dVueErreur))
             require($rep . $vues['principale']);

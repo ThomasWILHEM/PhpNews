@@ -11,14 +11,26 @@ require("header.php");
         <h4 class="text-decoration-underline">Nombre de news</h4>
         <form class="row g-3 align-items-center" method="post">
             <div class="col-auto">
-                <label for="newsnumber">Nombre de news à afficher par page :</label>
+                <label for="newsview">Nombre de news à afficher par page :</label>
             </div>
             <div class="col-auto hstack gap-3">
-                <input class="form-control" id="newsnumber" name="newsnumber" type="number" min="1"
+                <input class="form-control" id="newsview" name="newsview" type="number" min="1"
                        value="<?php if (isset($nbNewsParPage)) echo $nbNewsParPage; ?>" required>
                 <input class="btn btn-primary" type="submit" value="Enregistrer">
             </div>
-            <input type="hidden" name="action" value="modifierNbNews">
+            <input type="hidden" name="action" value="modifierNbNewsVue">
+        </form>
+
+        <form class="row g-3 align-items-center mt-2" method="post">
+            <div class="col-auto">
+                <label for="newsbd">Nombre de news en base de données :</label>
+            </div>
+            <div class="col-auto hstack gap-3">
+                <input class="form-control" id="newsbd" name="newsbd" type="number" min="1"
+                       value="<?php if (isset($nbNewsEnBD)) echo $nbNewsEnBD; ?>" required>
+                <input class="btn btn-primary" type="submit" value="Enregistrer">
+            </div>
+            <input type="hidden" name="action" value="modifierNbNewsEnBD">
         </form>
     </div>
 
