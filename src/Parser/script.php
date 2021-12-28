@@ -19,30 +19,17 @@ try {
 //Ouverture du fichier de log
 $logStream = fopen($logFile, "a");
 
-//Fonction de nettoyage
-function cleanString($text)
+function trunc_str(string $text, int $max): string
 {
-    $utf8 = array(
-        '/[áàâãªä]/u' => 'a',
-        '/[ÁÀÂÃÄ]/u' => 'A',
-        '/[ÍÌÎÏ]/u' => 'I',
-        '/[íìîï]/u' => 'i',
-        '/[éèêë]/u' => 'e',
-        '/[ÉÈÊË]/u' => 'E',
-        '/[óòôõºö]/u' => 'o',
-        '/[ÓÒÔÕÖ]/u' => 'O',
-        '/[úùûü]/u' => 'u',
-        '/[ÚÙÛÜ]/u' => 'U',
-        '/ç/' => 'c',
-        '/Ç/' => 'C',
-        '/ñ/' => 'n',
-        '/Ñ/' => 'N',
-        '/–/' => '-', // UTF-8 hyphen to "normal" hyphen
-        '/[’‘‹›‚]/u' => '\'', // Literally a single quote
-        '/[“”«»„]/u' => '"', // Double quote
-        '/ /' => ' ', // nonbreaking space (equiv. to 0x160)
-    );
-    return preg_replace(array_keys($utf8), array_values($utf8), $text);
+    $final_string = "";
+    if (strlen($text) < $max)
+        return $text;
+    foreach (explode(' ', $text) as $str) {
+        if (strlen($final_string) + strlen($str) > $max - 3)
+            return $final_string . "...";
+        $final_string .= " " . $str;
+    }
+    return $final_string;
 }
 
 foreach ($sites as $site) {
@@ -53,23 +40,20 @@ foreach ($sites as $site) {
 
         foreach ($rss->channel->item as $news) {
             $titre = $news->title;
-            $titre = cleanString($titre);
             $titre = filter_var($titre, FILTER_SANITIZE_STRING);
-            $titre = substr($titre, 0, 97);
-            if (strlen($titre) == 97)
-                $titre = str_pad($titre, 100, '.');
+            $titre = trunc_str($titre, 100);
 
             $description = $news->description;
-            $description = cleanString($description);
             $description = filter_var($description, FILTER_SANITIZE_STRING);
-            $description = substr($description, 0, 497);
-            if (strlen($description) == 497)
-                $description = str_pad($description, 500, '.');
+            $description = trunc_str($description, 500);
 
             $lien = $news->link;
             $lien = filter_var($lien, FILTER_SANITIZE_URL);
-            if (strlen($lien) > 256)
+            if (strlen($lien) > 256) {
+                fwrite($logStream, date("Y-m-d H:i:s") . " => Erreur sur le site: " . $site . "\n");
+                fwrite($logStream, date("Y-m-d H:i:s") . " => Lien trop long(" . strlen($lien) . "): " . $lien . "\n");
                 continue;
+            }
 
             $date = date('Y-m-d H:i:s', strtotime($news->pubDate));
 
@@ -82,10 +66,10 @@ foreach ($sites as $site) {
         }
     } catch (PDOException $exception) {
         fwrite($logStream, date("Y-m-d H:i:s") . " => " . $exception->getMessage() . "\n");
-        fwrite($logStream, date("Y-m-d H:i:s") . " => " . "Erreur sur le site: " . $site . "\n");
+        fwrite($logStream, date("Y-m-d H:i:s") . " => Erreur sur le site: " . $site . "\n");
     } catch (Exception $e) {
         fwrite($logStream, date("Y-m-d H:i:s") . " => " . $e->getMessage() . "\n");
-        fwrite($logStream, date("Y-m-d H:i:s") . " => " . "Erreur sur le site: " . $site . "\n");
+        fwrite($logStream, date("Y-m-d H:i:s") . " => Erreur sur le site: " . $site . "\n");
     }
 }
 
